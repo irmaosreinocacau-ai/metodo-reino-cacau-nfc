@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Método Reino Cacau NFC</title>
+<meta name="description" content="Aprenda a configurar e vender placas NFC de avaliação do Google e do Instagram, com fornecedor incluso e comunidade de vendedores.">
+<link rel="icon" href="img/icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap">
+
+<!-- Meta Pixel: Pixel Curso NFC (somente PageView na LP; a compra é enviada pela Hubla) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1710189350044708');
+fbq('track','PageView');
+</script>
+
+<style>
+/* Layout: coluna única escura, faixas alternadas preto / preto-quente, detalhes em fio dourado; oferta fixa no rodapé no celular */
+:root{
+  --ink:#0a0907;          /* fundo principal */
+  --ink-2:#14110c;        /* faixas alternadas */
+  --line:#3a2f1c;         /* fios e bordas */
+  --gold:#c9a55c;         /* dourado base */
+  --gold-hi:#f0dca8;      /* dourado claro (champanhe) */
+  --text:#f3ead6;         /* texto principal */
+  --muted:#b9a984;        /* texto secundário */
+  --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
+  --f-body:"Montserrat", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+.band{padding-block:84px}
+.band.alt{background:var(--ink-2);border-block:1px solid var(--line)}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.12;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.75rem,3.6vw,2.6rem);color:var(--gold-hi)}
+h3{font-size:1.15rem;color:var(--gold-hi)}
+p{margin:0}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.78rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before,.eyebrow::after{content:"";width:34px;height:1px;background:var(--gold)}
+.lead{color:var(--muted);max-width:60ch}
+.gold-text{background:linear-gradient(180deg,#fff4d6 0%,#e6c47f 46%,#a8792f 58%,#f0d596 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.head{display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center;margin-bottom:44px}
+
+/* botão */
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 34px;border-radius:999px;font-weight:800;font-size:1.02rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:#1b1307;
+  background:linear-gradient(90deg,#b88a3e,#f2dca4 50%,#b88a3e);background-size:200% 100%;box-shadow:0 10px 34px -10px rgba(201,165,92,.65);transition:background-position .5s,transform .2s}
+.cta:hover{background-position:100% 0;transform:translateY(-2px)}
+.cta:focus-visible{outline:2px solid var(--gold-hi);outline-offset:4px}
+.cta svg{width:20px;height:20px}
+.note{font-size:.82rem;color:var(--muted);letter-spacing:.02em}
+
+/* topo */
+.top{display:flex;justify-content:center;padding-block:26px 0}
+.top img{width:min(300px,70vw)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:40px 0}
+.hero::before{content:"";position:absolute;inset:auto -20% -30% -20%;height:70%;background:radial-gradient(ellipse at 50% 100%,rgba(201,165,92,.28),transparent 65%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:end}
+.hero-copy{display:flex;flex-direction:column;gap:22px;padding-bottom:70px;min-width:0}
+.hero h1{font-size:clamp(2.1rem,4.8vw,3.6rem)}
+.hero .lead{font-size:1.08rem}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:.84rem;color:var(--text);background:rgba(20,17,12,.7)}
+.chip b{color:var(--gold-hi)}
+.hero-art{position:relative;min-width:0}
+.hero-art .people{-webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent);mask-image:linear-gradient(to bottom,#000 78%,transparent);position:relative;z-index:2;width:100%;filter:drop-shadow(0 0 22px rgba(201,165,92,.25))}
+.hero-art .pl{position:absolute;z-index:1;width:36%;filter:drop-shadow(0 16px 24px rgba(0,0,0,.6))}
+.hero-art .pl.a{left:-10%;top:18%;transform:rotate(-12deg)}
+.hero-art .pl.b{right:-6%;top:8%;transform:rotate(10deg)}
+
+/* oportunidade */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split > *{min-width:0}
+.plates{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.plates figure{margin:0;display:flex;flex-direction:column;gap:8px;align-items:center}
+.plates img{filter:drop-shadow(0 14px 22px rgba(0,0,0,.55))}
+.plates figcaption{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.steps{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:18px}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start}
+.steps .n{width:44px;height:44px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);color:var(--gold-hi)}
+.steps strong{display:block;color:var(--text)}
+.steps span{color:var(--muted);font-size:.95rem}
+
+/* módulos */
+.modules{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;scrollbar-color:var(--gold) transparent}
+.modules figure{margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:12px}
+.modules img{border-radius:14px;border:1px solid var(--line);aspect-ratio:3/5;object-fit:cover;width:100%}
+.modules figcaption{font-size:.9rem;color:var(--muted)}
+.modules figcaption b{display:block;color:var(--text);font-weight:600}
+.hint{margin-top:10px;text-align:center;font-size:.8rem;color:var(--muted)}
+
+/* fornecedor */
+.price-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.price-table th,.price-table td{padding:16px 10px;border-bottom:1px solid var(--line);text-align:left}
+.price-table th{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.price-table td:last-child{text-align:right;font-family:var(--f-display);font-size:1.25rem;color:var(--gold-hi)}
+.table-box{overflow-x:auto}
+
+/* depoimentos */
+.proofs{columns:3 260px;column-gap:18px}
+.proofs figure{break-inside:avoid;margin:0 0 18px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000}
+
+/* sobre */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.about > *{min-width:0}
+.about .photo{border-radius:18px;background:radial-gradient(ellipse at 50% 90%,rgba(201,165,92,.35),transparent 60%),var(--ink);border:1px solid var(--line);padding-top:24px;overflow:hidden}
+.stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:26px}
+.stats div{display:flex;flex-direction:column}
+.stats b{font-family:var(--f-display);font-size:2rem;color:var(--gold-hi);font-variant-numeric:tabular-nums}
+.stats span{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* oferta */
+.offer{max-width:640px;margin:0 auto;border:1px solid var(--gold);border-radius:22px;padding:44px 34px;text-align:center;background:linear-gradient(180deg,rgba(201,165,92,.08),transparent 40%),var(--ink);box-shadow:0 0 60px -20px rgba(201,165,92,.45)}
+.offer ul{list-style:none;padding:0;margin:26px 0;display:grid;gap:12px;text-align:left}
+.offer li{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start}
+.offer li svg{width:22px;height:22px;color:var(--gold);margin-top:2px}
+.price{display:flex;flex-direction:column;align-items:center;gap:2px;margin:6px 0 24px}
+.price small{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.price strong{font-family:var(--f-display);font-size:clamp(3rem,9vw,4.2rem);line-height:1}
+.price em{font-style:normal;color:var(--muted);font-size:.9rem}
+.guarantee{display:flex;gap:14px;align-items:center;justify-content:center;margin-top:22px;font-size:.88rem;color:var(--muted);text-align:left}
+.guarantee svg{width:38px;height:38px;flex:none;color:var(--gold)}
+
+/* faq */
+.faq{max-width:760px;margin:0 auto;display:grid;gap:12px}
+.faq details{border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:var(--ink)}
+.faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--gold);font-size:1.3rem;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin-top:12px;color:var(--muted)}
+.faq summary:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:6px}
+
+footer{padding-block:40px 110px;text-align:center;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line)}
+footer img{width:180px;margin:0 auto 14px;opacity:.85}
+
+/* barra fixa (celular) */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;display:none;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:rgba(10,9,7,.94);border-top:1px solid var(--line);backdrop-filter:blur(8px)}
+.sticky .p{display:flex;flex-direction:column;line-height:1.2}
+.sticky .p b{font-family:var(--f-display);font-size:1.35rem;color:var(--gold-hi)}
+.sticky .p span{font-size:.72rem;color:var(--muted)}
+.sticky .cta{padding:14px 20px;font-size:.85rem}
+
+@media (max-width:860px){
+  .band{padding-block:64px}
+  .hero-grid,.split,.about{grid-template-columns:1fr}
+  .hero-copy{padding-bottom:0;align-items:center;text-align:center}
+  .chips{justify-content:center}
+  .hero-art{max-width:330px;margin:0 auto;order:-1}
+  .hero{padding-block:16px 36px}
+  .hero .grid-floor{height:30%}
+  .sticky .cta{white-space:nowrap}
+  .modules{grid-auto-columns:62%}
+  .sticky{display:flex}
+}
+
+/* calculadora */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--gold);border-radius:22px;overflow:hidden;background:var(--ink)}
+.calc > *{min-width:0;padding:34px}
+.calc-in{display:flex;flex-direction:column;gap:30px;border-right:1px solid var(--line)}
+.field{display:flex;flex-direction:column;gap:12px}
+.field label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-weight:600}
+.field output{font-family:var(--f-display);font-size:1.5rem;color:var(--gold-hi);font-variant-numeric:tabular-nums}
+.field small{color:var(--muted);font-size:.8rem}
+input[type=range]{width:100%;accent-color:var(--gold);height:28px;cursor:pointer}
+input[type=range]:focus-visible{outline:2px solid var(--gold-hi);outline-offset:4px}
+.calc-out{display:flex;flex-direction:column;justify-content:center;gap:18px;background:linear-gradient(180deg,rgba(201,165,92,.1),transparent 70%)}
+.rows{display:grid;gap:10px;font-variant-numeric:tabular-nums}
+.rows div{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:.95rem;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.rows b{color:var(--text);font-weight:600}
+.total small{display:block;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.total strong{display:block;font-family:var(--f-display);font-size:clamp(2.4rem,6vw,3.4rem);line-height:1.1;font-variant-numeric:tabular-nums}
+.disclaimer{font-size:.78rem;color:var(--muted)}
+@media (max-width:860px){.calc{grid-template-columns:1fr}.calc-in{border-right:0;border-bottom:1px solid var(--line)}.calc > *{padding:26px 22px}}
+
+/* ===== efeitos ===== */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:40;background:linear-gradient(90deg,#8a6526,var(--gold-hi),#8a6526);box-shadow:0 0 12px var(--gold)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.hero .grid-floor{position:absolute;left:-10%;right:-10%;bottom:0;height:45%;z-index:0;pointer-events:none;
+  background:linear-gradient(transparent 0 96%,rgba(201,165,92,.22) 96%) 0 0/100% 38px,linear-gradient(90deg,transparent 0 97%,rgba(201,165,92,.18) 97%) 0 0/60px 100%;
+  transform:perspective(420px) rotateX(62deg);transform-origin:bottom;mask-image:linear-gradient(to top,#000 10%,transparent 90%);-webkit-mask-image:linear-gradient(to top,#000 10%,transparent 90%)}
+.hero-grid{z-index:1}
+.gold-text.shine{background-size:220% 100%;background-image:linear-gradient(100deg,#e6c47f 0%,#fff4d6 18%,#e6c47f 30%,#a8792f 52%,#f0d596 70%,#e6c47f 100%);animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:-220% 0}}
+.cta{position:relative;overflow:hidden;isolation:isolate}
+.cta::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;z-index:-1;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:sweep 3.6s ease-in-out infinite}
+@keyframes sweep{0%,55%{left:-60%}100%{left:130%}}
+.cta{animation:pulse 3.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 10px 34px -10px rgba(201,165,92,.65)}50%{box-shadow:0 10px 44px -6px rgba(240,220,168,.85)}}
+.float{animation:bob 6s ease-in-out infinite}
+.float.d2{animation-delay:-3s}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -12px}}
+.tilt{transition:transform .25s ease;transform-style:preserve-3d;will-change:transform}
+.marquee{overflow:hidden;border-block:1px solid var(--line);background:linear-gradient(90deg,#0d0b08,#1a1510,#0d0b08);padding-block:16px;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee .track{display:flex;gap:44px;width:max-content;animation:marq 38s linear infinite}
+.marquee span{display:inline-flex;align-items:center;gap:44px;font-family:var(--f-display);font-size:1.05rem;letter-spacing:.14em;color:var(--gold-hi);white-space:nowrap}
+.marquee span::after{content:"✦";color:var(--gold);font-size:.8rem}
+@keyframes marq{to{transform:translateX(-50%)}}
+.card-glow{position:relative;border-radius:18px;padding:22px;background:linear-gradient(var(--ink),var(--ink)) padding-box,linear-gradient(140deg,rgba(240,220,168,.7),rgba(58,47,28,.4) 40%,rgba(201,165,92,.6)) border-box;border:1px solid transparent;transition:transform .3s,box-shadow .3s}
+.card-glow:hover{transform:translateY(-4px);box-shadow:0 18px 40px -18px rgba(201,165,92,.5)}
+.steps li.card-glow{grid-template-columns:44px 1fr}
+.modules figure{transition:transform .35s ease}
+.modules figure:hover{transform:translateY(-8px)}
+.modules figure:hover img{box-shadow:0 20px 50px -18px rgba(201,165,92,.7);border-color:var(--gold)}
+.modules img{transition:box-shadow .35s,border-color .35s}
+.carousel{position:relative}
+.nav-btn{position:absolute;top:38%;z-index:3;width:48px;height:48px;border-radius:50%;border:1px solid var(--gold);background:rgba(10,9,7,.85);color:var(--gold-hi);display:grid;place-items:center;cursor:pointer;transition:background .2s}
+.nav-btn:hover{background:var(--gold);color:#1b1307}
+.nav-btn:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+.nav-btn.prev{left:-14px}.nav-btn.next{right:-14px}
+.nav-btn svg{width:20px;height:20px}
+.proofs figure{transition:transform .3s,box-shadow .3s,border-color .3s}
+.proofs figure:hover{transform:translateY(-4px) rotate(-.4deg);border-color:var(--gold);box-shadow:0 18px 40px -18px rgba(201,165,92,.5)}
+.price-table tbody tr{transition:background .2s}
+.price-table tbody tr:hover{background:rgba(201,165,92,.07)}
+.offer{position:relative;overflow:hidden}
+.offer::before{content:"";position:absolute;inset:-1px;pointer-events:none;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(240,220,168,.14),transparent 60%);transition:opacity .3s}
+.offer::after{content:"";position:absolute;inset:0;border-radius:22px;padding:1px;pointer-events:none;background:conic-gradient(from var(--ang,0deg),transparent 0 70%,var(--gold-hi) 80%,transparent 90%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 6s linear infinite}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes spin{to{--ang:360deg}}
+.divider{height:1px;max-width:1120px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--gold),transparent);position:relative}
+.divider::after{content:"";position:absolute;left:50%;top:-4px;width:9px;height:9px;transform:translateX(-50%) rotate(45deg);background:var(--ink);border:1px solid var(--gold-hi);box-shadow:0 0 12px var(--gold)}
+.rv{opacity:0;translate:0 28px;transition:opacity .8s ease,translate .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;translate:0 0}
+.faq details{transition:border-color .25s,background .25s}
+.faq details[open]{border-color:var(--gold);background:linear-gradient(180deg,rgba(201,165,92,.06),transparent)}
+.faq summary::after{transition:transform .3s}
+.faq details[open] summary::after{content:"+";transform:rotate(45deg)}
+@media (max-width:860px){.nav-btn{display:none}}
+@media (prefers-reduced-motion:reduce){.cta,.cta::after,.float,.marquee .track,.gold-text.shine,.offer::after{animation:none!important}.rv{opacity:1!important;translate:none!important}}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="top wrap"><img src="img/logo.webp" alt="Método Reino Cacau NFC"></header>
+
+<section class="hero">
+  <canvas id="dust" aria-hidden="true"></canvas><div class="grid-floor" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Curso + Comunidade</span>
+      <h1><span class="gold-text shine">Aprenda a configurar e vender placas NFC</span> de avaliação</h1>
+      <p class="lead">O passo a passo completo para vender placas de avaliação do Google e do Instagram para os comércios da sua cidade, com fornecedor incluso e uma comunidade de mais de 85 vendedores ao seu lado.</p>
+      <div class="chips">
+        <span class="chip"><b>+85</b> vendedores na comunidade</span>
+        <span class="chip">Placas a partir de <b>R$ 16</b></span>
+        <span class="chip">Acesso <b>imediato</b></span>
+      </div>
+      <div><a class="cta js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj">Quero começar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <p class="note">R$ 97 · pagamento único · garantia de 7 dias</p>
+    </div>
+    <div class="hero-art">
+      <img class="pl a float tilt" src="img/placa-azul.webp" alt="">
+      <img class="pl b float d2 tilt" src="img/placa-preta.webp" alt="">
+      <img class="people" src="img/irmaos.webp" alt="Os Irmãos Reino Cacau">
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track"><span>Placas NFC</span><span>Google</span><span>Instagram</span><span>QR Code</span><span>Fornecedor incluso</span><span>+85 vendedores</span><span>Acesso imediato</span><span>Método passo a passo</span><span>Placas NFC</span><span>Google</span><span>Instagram</span><span>QR Code</span><span>Fornecedor incluso</span><span>+85 vendedores</span><span>Acesso imediato</span><span>Método passo a passo</span></div></div>
+<section class="band alt">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow">A oportunidade</span>
+      <h2 style="margin-top:14px">Todo comércio quer mais avaliações no Google</h2>
+      <p class="lead" style="margin-top:16px">Restaurante, salão, barbearia, clínica, loja. O cliente aproxima o celular da placa ou escaneia o QR Code e cai direto na página de avaliação. Você compra a placa no fornecedor, configura e entrega pronta.</p>
+      <ol class="steps">
+        <li class="card-glow"><span class="n">1</span><div><strong>Compra no fornecedor</strong><span>A partir de R$ 16 a placa, com envio para todo o Brasil.</span></div></li>
+        <li class="card-glow"><span class="n">2</span><div><strong>Configura em minutos</strong><span>Você aponta a placa para o Google ou Instagram do cliente.</span></div></li>
+        <li class="card-glow"><span class="n">3</span><div><strong>Vende para o comércio</strong><span>Com as abordagens que a comunidade usa todos os dias.</span></div></li>
+      </ol>
+    </div>
+    <div class="rv-t plates">
+      <figure class="float"><img class="tilt" src="img/placa-azul.webp" alt="Placa NFC de avaliação do Google, azul"><figcaption>Google · azul</figcaption></figure>
+      <figure class="float"><img class="tilt" src="img/placa-preta.webp" alt="Placa NFC de avaliação do Google, preta"><figcaption>Google · preta</figcaption></figure>
+      <figure class="float"><img class="tilt" src="img/placa-insta-rosa.webp" alt="Placa NFC do Instagram, rosa"><figcaption>Instagram · rosa</figcaption></figure>
+      <figure class="float"><img class="tilt" src="img/placa-insta-preta.webp" alt="Placa NFC do Instagram, preta"><figcaption>Instagram · preta</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="rv-t head">
+      <span class="eyebrow">O que você vai aprender</span>
+      <h2>6 módulos, do zero à escala</h2>
+    </div>
+    <div class="carousel"><button class="nav-btn prev" type="button" aria-label="Módulo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button><button class="nav-btn next" type="button" aria-label="Próximo módulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    <div class="modules" id="modules" tabindex="0" aria-label="Módulos do curso">
+      <figure><img src="img/modulo-1.jpg" alt="Módulo 1: Preparando o terreno" loading="lazy"><figcaption><b>Preparando o terreno</b>Como o negócio funciona e como começar</figcaption></figure>
+      <figure><img src="img/modulo-2.jpg" alt="Módulo 2: A placa certa" loading="lazy"><figcaption><b>A placa certa</b>Modelos, qualidade e configuração passo a passo</figcaption></figure>
+      <figure><img src="img/modulo-3.jpg" alt="Módulo 3: As primeiras vendas" loading="lazy"><figcaption><b>As primeiras vendas</b>Abordagem, preço e fechamento</figcaption></figure>
+      <figure><img src="img/modulo-4.jpg" alt="Módulo 4: Do bairro à cidade" loading="lazy"><figcaption><b>Do bairro à cidade</b>Rota de visitas, WhatsApp e vendas em volume</figcaption></figure>
+      <figure><img src="img/modulo-5.jpg" alt="Módulo 5: Ferramentas do negócio" loading="lazy"><figcaption><b>Ferramentas do negócio</b>Fornecedor, painel e materiais prontos</figcaption></figure>
+      <figure><img src="img/modulo-6.jpg" alt="Módulo 6: Comunidade" loading="lazy"><figcaption><b>Comunidade</b>Grupo no WhatsApp com +85 vendedores</figcaption></figure>
+    </div></div>
+    <p class="hint">Arraste para o lado para ver todos os módulos</p>
+  </div>
+</section>
+
+<section class="band alt">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow">Fornecedor incluso</span>
+      <h2 style="margin-top:14px">Quanto mais você compra, menos paga por placa</h2>
+      <p class="lead" style="margin-top:16px">Ao entrar no curso você recebe acesso ao fornecedor das placas de acrílico com NFC e QR Code. A placa chega em branco e você configura o destino de cada uma.</p>
+    </div>
+    <div class="rv-t table-box">
+      <table class="price-table">
+        <thead><tr><th>Quantidade no pedido</th><th style="text-align:right">Por placa</th></tr></thead>
+        <tbody>
+          <tr><td>1 a 49 placas</td><td>R$ 19,00</td></tr>
+          <tr><td>50 a 99 placas</td><td>R$ 17,00</td></tr>
+          <tr><td>100 a 149 placas</td><td>R$ 16,50</td></tr>
+          <tr><td>150 placas ou mais</td><td>R$ 16,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<section class="band" id="calculadora">
+  <div class="wrap">
+    <div class="rv-t head">
+      <span class="eyebrow">Calculadora</span>
+      <h2>Faça a sua simulação</h2>
+      <p class="lead">Escolha quantas placas quer vender por mês e por quanto. O custo por placa segue a tabela do fornecedor.</p>
+    </div>
+    <div class="rv-t calc">
+      <div class="calc-in">
+        <div class="field">
+          <label for="qtd">Placas vendidas por mês <output id="qtd-out">20</output></label>
+          <input type="range" id="qtd" min="5" max="300" step="5" value="20">
+          <small>De 5 a 300 placas</small>
+        </div>
+        <div class="field">
+          <label for="preco">Preço de venda por placa <output id="preco-out">R$ 100</output></label>
+          <input type="range" id="preco" min="40" max="200" step="5" value="100">
+          <small>Na comunidade, as vendas costumam ficar entre R$ 80 e R$ 150</small>
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="rows">
+          <div><span>Faturamento</span><b id="fat">R$ 2.000</b></div>
+          <div><span>Custo das placas (<span id="unit">R$ 19,00</span> cada)</span><b id="custo">R$ 380</b></div>
+        </div>
+        <div class="total"><small>Lucro estimado no mês</small><strong class="gold-text" id="lucro">R$ 1.620</strong></div>
+        <p class="disclaimer">Simulação ilustrativa. O resultado depende do seu esforço, da sua região e do preço que você pratica. Não é promessa de ganho.</p>
+        <div><a class="cta js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj">Quero começar agora</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap">
+    <div class="rv-t head">
+      <span class="eyebrow">Direto da comunidade</span>
+      <h2>Quem já está vendendo</h2>
+      <p class="lead">Mensagens reais do nosso grupo, com os números de telefone ocultados.</p>
+    </div>
+    <div class="rv-t proofs">
+      <figure><img src="img/depoimento-1.jpg" alt="Aluno contando que vendeu mais 5 placas e fez novo pedido" loading="lazy"></figure>
+      <figure><img src="img/depoimento-3.jpg" alt="Aluno contando que vendeu uma placa por R$ 150" loading="lazy"></figure>
+      <figure><img src="img/depoimento-2.jpg" alt="Aluno contando que vendeu 4 placas" loading="lazy"></figure>
+      <figure><img src="img/depoimento-4.jpg" alt="Aluno contando que finalmente encontrou um negócio que dá certo" loading="lazy"></figure>
+      <figure><img src="img/depoimento-5.jpg" alt="Aluno elogiando a qualidade das placas e a comunidade" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band alt">
+  <div class="wrap about">
+    <div class="photo"><img src="img/irmaos.webp" alt="Os Irmãos Reino Cacau" loading="lazy"></div>
+    <div>
+      <span class="eyebrow">Quem ensina</span>
+      <h2 style="margin-top:14px">Irmãos Reino Cacau</h2>
+      <p class="lead" style="margin-top:16px">Somos o maior perfil do nicho de placas NFC no Instagram. Vendemos placas todos os dias e montamos o método com o que funciona na rua, no balcão e no WhatsApp. Dentro do curso você aprende com a gente e com a comunidade que já está vendendo.</p>
+      <div class="stats">
+        <div><b data-count="38" data-suffix=" mil">38 mil</b><span>seguidores</span></div>
+        <div><b data-count="85" data-prefix="+">+85</b><span>vendedores no grupo</span></div>
+        <div><b data-count="6">6</b><span>módulos</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+<section class="band" id="oferta">
+  <div class="wrap">
+    <div class="rv-t offer">
+      <span class="eyebrow">Acesso completo</span>
+      <h2 style="margin-top:14px">Método Reino Cacau NFC</h2>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Curso completo em 6 módulos, do zero à escala</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Configuração das placas de Google e Instagram passo a passo</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Acesso ao fornecedor, com placas a partir de R$ 16</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Abordagens e materiais prontos para vender</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Grupo no WhatsApp com +85 vendedores</span></li>
+      </ul>
+      <div class="price"><small>Pagamento único</small><strong class="gold-text shine">R$ 97</strong><em>ou parcelado no cartão</em></div>
+      <a class="cta js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj">Quero entrar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <div class="guarantee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg><span><b style="color:var(--text)">Garantia de 7 dias.</b> Se não for para você, peça o reembolso dentro do prazo e devolvemos 100% do valor.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt">
+  <div class="wrap">
+    <div class="rv-t head"><span class="eyebrow">Dúvidas</span><h2>Perguntas frequentes</h2></div>
+    <div class="rv-t faq">
+      <details><summary>Preciso entender de tecnologia?</summary><p>Não. A configuração é feita pelo celular, escaneando o QR Code da placa já logado no painel. O curso mostra cada passo em vídeo.</p></details>
+      <details><summary>As placas estão incluídas no valor do curso?</summary><p>Não. O curso dá acesso ao fornecedor, onde você compra as placas no seu ritmo, a partir de R$ 16 cada, conforme a quantidade do pedido.</p></details>
+      <details><summary>Qual é a diferença para quem só tem o fornecedor?</summary><p>O fornecedor entrega a placa. O curso ensina a configurar, abordar o comércio, definir o preço e fechar a venda, com o suporte da comunidade de quem já está vendendo.</p></details>
+      <details><summary>Como recebo o acesso?</summary><p>Logo após a confirmação do pagamento você recebe o acesso à área de membros por e-mail, com as aulas e o link do grupo no WhatsApp.</p></details>
+      <details><summary>Funciona na minha cidade?</summary><p>Sim. Qualquer comércio que tenha perfil no Google ou no Instagram é um cliente em potencial, e o fornecedor envia para todo o Brasil.</p></details>
+      <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia. Peça o reembolso dentro do prazo e devolvemos o valor integral.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="img/logo.webp" alt="Método Reino Cacau NFC">
+  <p>© 2026 Irmãos Reino Cacau · Todos os direitos reservados</p>
+  <p style="margin-top:6px">Este site não é afiliado ao Google, Instagram ou Meta.</p>
+</footer>
+
+<div class="sticky">
+  <div class="p"><b>R$ 97</b><span>Acesso imediato · 7 dias de garantia</span></div>
+  <a class="cta js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj">Quero começar</a>
+</div>
+
+<script>
+// Repassa UTMs e fbclid da URL da LP para o checkout da Hubla (rastreamento das campanhas)
+(function(){
+  try{
+    var q=new URLSearchParams(location.search), keep=new URLSearchParams();
+    q.forEach(function(v,k){ if(/^utm_|^fbclid$|^src$|^sck$/.test(k)) keep.set(k,v); });
+    var s=keep.toString(); if(!s) return;
+    document.querySelectorAll('.js-checkout').forEach(function(a){
+      a.href += (a.href.indexOf('?')>-1?'&':'?') + s;
+    });
+  }catch(e){}
+})();
+</script>
+
+<script>
+// Calculadora: custo por placa segue as faixas do fornecedor
+(function(){
+  var q=document.getElementById('qtd'), p=document.getElementById('preco');
+  if(!q||!p) return;
+  var brl=function(v,dec){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0});};
+  var cur=null,raf=0,L=document.getElementById('lucro');
+  function tween(to){if(cur===null||matchMedia('(prefers-reduced-motion: reduce)').matches){cur=to;L.textContent=brl(to);return;}var from=cur,st=null;cancelAnimationFrame(raf);(function f(ts){if(!st)st=ts;var k=Math.min(1,(ts-st)/350);cur=Math.round(from+(to-from)*(1-Math.pow(1-k,3)));L.textContent=brl(cur);if(k<1)raf=requestAnimationFrame(f);})(performance.now());}
+  function unit(n){return n>=150?16:n>=100?16.5:n>=50?17:19;}
+  function upd(){
+    var n=+q.value, pr=+p.value, u=unit(n), fat=n*pr, custo=n*u;
+    document.getElementById('qtd-out').textContent=n;
+    document.getElementById('preco-out').textContent=brl(pr);
+    document.getElementById('unit').textContent=brl(u,2);
+    document.getElementById('fat').textContent=brl(fat);
+    document.getElementById('custo').textContent=brl(custo);
+    tween(fat-custo);
+  }
+  q.addEventListener('input',upd); p.addEventListener('input',upd); upd();
+})();
+</script>
+
+<script>
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // barra de progresso
+  var bar=document.getElementById('progress');
+  function prog(){var h=document.documentElement;var p=h.scrollTop/((h.scrollHeight-h.clientHeight)||1);bar.style.width=(p*100)+'%';}
+  addEventListener('scroll',prog,{passive:true});prog();
+  // revelar ao rolar (só o que está abaixo da primeira tela)
+  var els=[].slice.call(document.querySelectorAll('.rv-t'));
+  if(!reduce&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+    els.forEach(function(el){if(el.getBoundingClientRect().top>innerHeight){el.classList.add('rv');io.observe(el);}});
+    setTimeout(function(){els.forEach(function(el){el.classList.add('in');});},6000);
+  }
+  // contadores
+  var cs=[].slice.call(document.querySelectorAll('[data-count]'));
+  function run(el){var t=+el.dataset.count,p=el.dataset.prefix||'',s=el.dataset.suffix||'',st=null;
+    function f(ts){if(!st)st=ts;var k=Math.min(1,(ts-st)/1400);k=1-Math.pow(1-k,3);el.textContent=p+Math.round(t*k)+s;if(k<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+  if(!reduce&&'IntersectionObserver' in window){var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);io2.unobserve(e.target);}});},{threshold:.6});cs.forEach(function(c){io2.observe(c);});}
+  // carrossel
+  var m=document.getElementById('modules');
+  document.querySelectorAll('.nav-btn').forEach(function(b){b.addEventListener('click',function(){var w=m.querySelector('figure').offsetWidth+18;m.scrollBy({left:b.classList.contains('next')?w:-w,behavior:reduce?'auto':'smooth'});});});
+  // inclinação 3D nas placas
+  if(!reduce&&matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('.tilt').forEach(function(el){
+      el.addEventListener('mousemove',function(ev){var r=el.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width-.5,y=(ev.clientY-r.top)/r.height-.5;el.style.transform='perspective(700px) rotateY('+(x*18)+'deg) rotateX('+(-y*18)+'deg) scale(1.04)';});
+      el.addEventListener('mouseleave',function(){el.style.transform='';});
+    });
+    var of=document.querySelector('.offer');
+    if(of)of.addEventListener('mousemove',function(ev){var r=of.getBoundingClientRect();of.style.setProperty('--mx',(ev.clientX-r.left)+'px');of.style.setProperty('--my',(ev.clientY-r.top)+'px');});
+  }
+  // poeira dourada no topo
+  var cv=document.getElementById('dust');
+  if(cv&&cv.getContext&&!reduce){
+    var ctx=cv.getContext('2d'),P=[],W,H,dpr=Math.min(2,devicePixelRatio||1);
+    function size(){W=cv.offsetWidth;H=cv.offsetHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+    size();addEventListener('resize',size);
+    for(var i=0;i<70;i++)P.push({x:Math.random(),y:Math.random(),r:Math.random()*1.8+.4,v:Math.random()*.25+.05,a:Math.random()*.6+.2,t:Math.random()*6});
+    (function loop(){ctx.clearRect(0,0,W,H);P.forEach(function(p){p.y-=p.v/H*2;p.t+=.02;if(p.y<-.02){p.y=1.02;p.x=Math.random();}
+      var al=p.a*(.6+.4*Math.sin(p.t));ctx.beginPath();ctx.arc(p.x*W+Math.sin(p.t)*6,p.y*H,p.r,0,6.3);ctx.fillStyle='rgba(240,220,168,'+al+')';ctx.shadowColor='rgba(201,165,92,.9)';ctx.shadowBlur=8;ctx.fill();});
+      requestAnimationFrame(loop);})();
+  }
+  // calculadora: número animado
+})();
+</script>
+
+</body>
+</html>
