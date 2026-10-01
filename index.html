@@ -76,7 +76,8 @@ p{margin:0}
 .chip{padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:.84rem;color:var(--text);background:rgba(20,17,12,.7)}
 .chip b{color:var(--gold-hi)}
 .hero-art{position:relative;min-width:0}
-.hero-art .people{-webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent);mask-image:linear-gradient(to bottom,#000 78%,transparent);position:relative;z-index:2;width:100%;filter:drop-shadow(0 0 22px rgba(201,165,92,.25))}
+.hero-art::before{content:"";position:absolute;z-index:0;left:8%;right:8%;top:12%;bottom:0;border-radius:50%;background:radial-gradient(ellipse at 50% 55%,rgba(201,165,92,.38),rgba(201,165,92,.12) 45%,transparent 70%);filter:blur(28px);pointer-events:none}
+.hero-art .people{-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent);mask-image:linear-gradient(to bottom,#000 80%,transparent);position:relative;z-index:2;width:100%;filter:drop-shadow(0 0 2px rgba(240,220,168,.35))}
 .hero-art .pl{position:absolute;z-index:1;width:36%;filter:drop-shadow(0 16px 24px rgba(0,0,0,.6))}
 .hero-art .pl.a{left:-10%;top:18%;transform:rotate(-12deg)}
 .hero-art .pl.b{right:-6%;top:8%;transform:rotate(10deg)}
