@@ -8,7 +8,7 @@
 <link rel="icon" href="img/icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;600;700;800&display=swap">
 
 <!-- Meta Pixel: Pixel Curso NFC (somente PageView na LP; a compra é enviada pela Hubla) -->
 <script>
@@ -38,7 +38,7 @@ fbq('track','PageView');
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
 .band{padding-block:84px}
@@ -114,6 +114,10 @@ p{margin:0}
 .proofs{columns:3 260px;column-gap:18px}
 .proofs figure{break-inside:avoid;margin:0 0 18px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000}
 
+/* prova logo no topo: no celular mostra só os 3 primeiros prints */
+.proofs-top{padding-block:40px 56px}
+@media (max-width:860px){.proofs-top .proofs figure:nth-child(n+4){display:none}.proofs-top{padding-block:28px 44px}}
+
 /* sobre */
 .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
 .about > *{min-width:0}
@@ -169,7 +173,7 @@ footer img{width:180px;margin:0 auto 14px;opacity:.85}
 }
 
 /* VSL */
-.vsl{padding-block:8px 64px}
+.vsl{padding-block:56px 64px}
 .vsl .head{margin-bottom:26px}
 .vsl-box{position:relative;max-width:900px;margin:0 auto;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#000;border:1px solid var(--gold);box-shadow:0 0 70px -18px rgba(201,165,92,.55)}
 .vsl-box video{width:100%;height:100%;display:block;object-fit:cover;background:#000}
@@ -180,7 +184,7 @@ footer img{width:180px;margin:0 auto 14px;opacity:.85}
 .vsl-play:focus-visible span{outline:2px solid var(--gold-hi);outline-offset:6px}
 .vsl-play em{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-style:normal;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi)}
 .vsl .cta-row{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:30px}
-@media (max-width:860px){.vsl{padding-block:0 52px}.vsl-box{border-radius:14px}.vsl-play span{width:74px;height:74px}.vsl-play svg{width:28px;height:28px}}
+@media (max-width:860px){.vsl{padding-block:44px 52px}.vsl-box{border-radius:14px}.vsl-play span{width:74px;height:74px}.vsl-play svg{width:28px;height:28px}}
 
 /* calculadora */
 .calc{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--gold);border-radius:22px;overflow:hidden;background:var(--ink)}
@@ -203,7 +207,6 @@ input[type=range]:focus-visible{outline:2px solid var(--gold-hi);outline-offset:
 
 /* ===== efeitos ===== */
 .progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:40;background:linear-gradient(90deg,#8a6526,var(--gold-hi),#8a6526);box-shadow:0 0 12px var(--gold)}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 #dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .hero .grid-floor{position:absolute;left:-10%;right:-10%;bottom:0;height:45%;z-index:0;pointer-events:none;
   background:linear-gradient(transparent 0 96%,rgba(201,165,92,.22) 96%) 0 0/100% 38px,linear-gradient(90deg,transparent 0 97%,rgba(201,165,92,.18) 97%) 0 0/60px 100%;
@@ -255,7 +258,12 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opa
 .faq details[open]{border-color:var(--gold);background:linear-gradient(180deg,rgba(201,165,92,.06),transparent)}
 .faq summary::after{transition:transform .3s}
 .faq details[open] summary::after{content:"+";transform:rotate(45deg)}
-@media (max-width:860px){.nav-btn{display:none}}
+@media (max-width:860px){.nav-btn{display:none}
+  /* celular: corta efeitos contínuos que pesam em aparelhos simples */
+  .sticky{backdrop-filter:none}
+  .float,.gold-text.shine,.offer::after{animation:none}
+  .cta{animation:none}
+  .hero-art::before{filter:none}}
 @media (prefers-reduced-motion:reduce){.cta,.cta::after,.float,.marquee .track,.gold-text.shine,.offer::after{animation:none!important}.rv{opacity:1!important;translate:none!important}}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -264,15 +272,15 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opa
 </head>
 <body>
 <div class="progress" id="progress"></div>
-<header class="top wrap"><img src="img/logo.webp" alt="Método Reino Cacau NFC"></header>
+<header class="top wrap"><img src="img/logo.webp" width="720" height="169" alt="Método Reino Cacau NFC" fetchpriority="high"></header>
 
 <section class="hero">
   <canvas id="dust" aria-hidden="true"></canvas><div class="grid-floor" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Curso + Comunidade</span>
-      <h1><span class="gold-text shine">Aprenda a configurar e vender placas NFC</span> de avaliação</h1>
-      <p class="lead">O passo a passo completo para vender placas de avaliação do Google e do Instagram para os comércios da sua cidade, com fornecedor incluso e uma comunidade de mais de 85 vendedores ao seu lado.</p>
+      <span class="eyebrow">Renda com placas NFC</span>
+      <h1>Compre a placa por <span class="gold-text shine">R$ 16</span> e venda por até <span class="gold-text shine">R$ 150</span></h1>
+      <p class="lead">Aprenda a vender placas de avaliação do Google e do Instagram para os comércios da sua cidade. A gente te ensina a configurar, abordar e fechar a venda, com fornecedor incluso e mais de 85 vendedores na comunidade.</p>
       <div class="chips">
         <span class="chip"><b>+85</b> vendedores na comunidade</span>
         <span class="chip">Placas a partir de <b>R$ 16</b></span>
@@ -282,9 +290,26 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opa
       <p class="note">R$ 97 · pagamento único · garantia de 7 dias</p>
     </div>
     <div class="hero-art">
-      <img class="pl a float tilt" src="img/placa-azul.webp" alt="">
-      <img class="pl b float d2 tilt" src="img/placa-preta.webp" alt="">
-      <img class="people" src="img/irmaos.webp" alt="Os Irmãos Reino Cacau">
+      <img class="pl a float tilt" src="img/placa-azul.webp" width="460" height="440" alt="">
+      <img class="pl b float d2 tilt" src="img/placa-preta.webp" width="460" height="439" alt="">
+      <img class="people" src="img/irmaos.webp" width="900" height="742" alt="Os Irmãos Reino Cacau" fetchpriority="high">
+    </div>
+  </div>
+</section>
+
+<section class="band alt proofs-top">
+  <div class="wrap">
+    <div class="rv-t head">
+      <span class="eyebrow">Direto da comunidade</span>
+      <h2>Quem já está vendendo</h2>
+      <p class="lead">Mensagens reais do nosso grupo, com os números de telefone ocultados.</p>
+    </div>
+    <div class="rv-t proofs">
+      <figure><img src="img/depoimento-1.webp" alt="Aluno contando que vendeu mais 5 placas e fez novo pedido" loading="lazy"></figure>
+      <figure><img src="img/depoimento-3.webp" alt="Aluno contando que vendeu uma placa por R$ 150" loading="lazy"></figure>
+      <figure><img src="img/depoimento-2.webp" alt="Aluno contando que vendeu 4 placas" loading="lazy"></figure>
+      <figure><img src="img/depoimento-4.webp" alt="Aluno contando que finalmente encontrou um negócio que dá certo" loading="lazy"></figure>
+      <figure><img src="img/depoimento-5.webp" alt="Aluno elogiando a qualidade das placas e a comunidade" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -296,7 +321,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opa
       <h2>A nossa história e como o método funciona</h2>
     </div>
     <div class="vsl-box">
-      <video id="vsl" src="video/vsl.mp4" poster="video/vsl-capa.jpg" preload="metadata" playsinline controlslist="nodownload"></video>
+      <video id="vsl" src="video/vsl.mp4" poster="video/vsl-capa.webp" preload="none" playsinline controlslist="nodownload"></video>
       <button class="vsl-play" id="vsl-play" type="button" aria-label="Assistir ao vídeo"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></svg></span><em>Toque para assistir · 2 min</em></button>
     </div>
     <div class="cta-row">
@@ -331,54 +356,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opa
       </ol>
     </div>
     <div class="rv-t plates">
-      <figure class="float"><img class="tilt" src="img/placa-azul.webp" alt="Placa NFC de avaliação do Google, azul"><figcaption>Google · azul</figcaption></figure>
-      <figure class="float"><img class="tilt" src="img/placa-preta.webp" alt="Placa NFC de avaliação do Google, preta"><figcaption>Google · preta</figcaption></figure>
-      <figure class="float"><img class="tilt" src="img/placa-insta-rosa.webp" alt="Placa NFC do Instagram, rosa"><figcaption>Instagram · rosa</figcaption></figure>
-      <figure class="float"><img class="tilt" src="img/placa-insta-preta.webp" alt="Placa NFC do Instagram, preta"><figcaption>Instagram · preta</figcaption></figure>
+      <figure class="float"><img class="tilt" src="img/placa-azul.webp" alt="Placa NFC de avaliação do Google, azul" loading="lazy"><figcaption>Google · azul</figcaption></figure>
+      <figure class="float"><img class="tilt" src="img/placa-preta.webp" alt="Placa NFC de avaliação do Google, preta" loading="lazy"><figcaption>Google · preta</figcaption></figure>
+      <figure class="float"><img class="tilt" src="img/placa-insta-rosa.webp" loading="lazy" alt="Placa NFC do Instagram, rosa"><figcaption>Instagram · rosa</figcaption></figure>
+      <figure class="float"><img class="tilt" src="img/placa-insta-preta.webp" loading="lazy" alt="Placa NFC do Instagram, preta"><figcaption>Instagram · preta</figcaption></figure>
     </div>
   </div>
 </section>
-
-<section class="band">
-  <div class="wrap">
-    <div class="rv-t head">
-      <span class="eyebrow">O que você vai aprender</span>
-      <h2>6 módulos, do zero à escala</h2>
-    </div>
-    <div class="carousel"><button class="nav-btn prev" type="button" aria-label="Módulo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button><button class="nav-btn next" type="button" aria-label="Próximo módulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
-    <div class="modules" id="modules" tabindex="0" aria-label="Módulos do curso">
-      <figure><img src="img/modulo-1.jpg" alt="Módulo 1: Preparando o terreno" loading="lazy"><figcaption><b>Preparando o terreno</b>Como o negócio funciona e como começar</figcaption></figure>
-      <figure><img src="img/modulo-2.jpg" alt="Módulo 2: A placa certa" loading="lazy"><figcaption><b>A placa certa</b>Modelos, qualidade e configuração passo a passo</figcaption></figure>
-      <figure><img src="img/modulo-3.jpg" alt="Módulo 3: As primeiras vendas" loading="lazy"><figcaption><b>As primeiras vendas</b>Abordagem, preço e fechamento</figcaption></figure>
-      <figure><img src="img/modulo-4.jpg" alt="Módulo 4: Do bairro à cidade" loading="lazy"><figcaption><b>Do bairro à cidade</b>Rota de visitas, WhatsApp e vendas em volume</figcaption></figure>
-      <figure><img src="img/modulo-5.jpg" alt="Módulo 5: Ferramentas do negócio" loading="lazy"><figcaption><b>Ferramentas do negócio</b>Fornecedor, painel e materiais prontos</figcaption></figure>
-      <figure><img src="img/modulo-6.jpg" alt="Módulo 6: Comunidade" loading="lazy"><figcaption><b>Comunidade</b>Grupo no WhatsApp com +85 vendedores</figcaption></figure>
-    </div></div>
-    <p class="hint">Arraste para o lado para ver todos os módulos</p>
-  </div>
-</section>
-
-<section class="band alt">
-  <div class="wrap split">
-    <div>
-      <span class="eyebrow">Fornecedor incluso</span>
-      <h2 style="margin-top:14px">Quanto mais você compra, menos paga por placa</h2>
-      <p class="lead" style="margin-top:16px">Ao entrar no curso você recebe acesso ao fornecedor das placas de acrílico com NFC e QR Code. A placa chega em branco e você configura o destino de cada uma.</p>
-    </div>
-    <div class="rv-t table-box">
-      <table class="price-table">
-        <thead><tr><th>Quantidade no pedido</th><th style="text-align:right">Por placa</th></tr></thead>
-        <tbody>
-          <tr><td>1 a 49 placas</td><td>R$ 19,00</td></tr>
-          <tr><td>50 a 99 placas</td><td>R$ 17,00</td></tr>
-          <tr><td>100 a 149 placas</td><td>R$ 16,50</td></tr>
-          <tr><td>150 placas ou mais</td><td>R$ 16,00</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
 
 <section class="band" id="calculadora">
   <div class="wrap">
@@ -412,22 +396,48 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opa
     </div>
   </div>
 </section>
-<section class="band">
+
+<section class="band alt">
   <div class="wrap">
     <div class="rv-t head">
-      <span class="eyebrow">Direto da comunidade</span>
-      <h2>Quem já está vendendo</h2>
-      <p class="lead">Mensagens reais do nosso grupo, com os números de telefone ocultados.</p>
+      <span class="eyebrow">O que você vai aprender</span>
+      <h2>6 módulos, do zero à escala</h2>
     </div>
-    <div class="rv-t proofs">
-      <figure><img src="img/depoimento-1.jpg" alt="Aluno contando que vendeu mais 5 placas e fez novo pedido" loading="lazy"></figure>
-      <figure><img src="img/depoimento-3.jpg" alt="Aluno contando que vendeu uma placa por R$ 150" loading="lazy"></figure>
-      <figure><img src="img/depoimento-2.jpg" alt="Aluno contando que vendeu 4 placas" loading="lazy"></figure>
-      <figure><img src="img/depoimento-4.jpg" alt="Aluno contando que finalmente encontrou um negócio que dá certo" loading="lazy"></figure>
-      <figure><img src="img/depoimento-5.jpg" alt="Aluno elogiando a qualidade das placas e a comunidade" loading="lazy"></figure>
+    <div class="carousel"><button class="nav-btn prev" type="button" aria-label="Módulo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button><button class="nav-btn next" type="button" aria-label="Próximo módulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    <div class="modules" id="modules" tabindex="0" aria-label="Módulos do curso">
+      <figure><img src="img/modulo-1.webp" alt="Módulo 1: Preparando o terreno" loading="lazy"><figcaption><b>Preparando o terreno</b>Como o negócio funciona e como começar</figcaption></figure>
+      <figure><img src="img/modulo-2.webp" alt="Módulo 2: A placa certa" loading="lazy"><figcaption><b>A placa certa</b>Modelos, qualidade e configuração passo a passo</figcaption></figure>
+      <figure><img src="img/modulo-3.webp" alt="Módulo 3: As primeiras vendas" loading="lazy"><figcaption><b>As primeiras vendas</b>Abordagem, preço e fechamento</figcaption></figure>
+      <figure><img src="img/modulo-4.webp" alt="Módulo 4: Do bairro à cidade" loading="lazy"><figcaption><b>Do bairro à cidade</b>Rota de visitas, WhatsApp e vendas em volume</figcaption></figure>
+      <figure><img src="img/modulo-5.webp" alt="Módulo 5: Ferramentas do negócio" loading="lazy"><figcaption><b>Ferramentas do negócio</b>Fornecedor, painel e materiais prontos</figcaption></figure>
+      <figure><img src="img/modulo-6.webp" alt="Módulo 6: Comunidade" loading="lazy"><figcaption><b>Comunidade</b>Grupo no WhatsApp com +85 vendedores</figcaption></figure>
+    </div></div>
+    <p class="hint">Arraste para o lado para ver todos os módulos</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow">Fornecedor incluso</span>
+      <h2 style="margin-top:14px">Quanto mais você compra, menos paga por placa</h2>
+      <p class="lead" style="margin-top:16px">Ao entrar no curso você recebe acesso ao fornecedor das placas de acrílico com NFC e QR Code. A placa chega em branco e você configura o destino de cada uma.</p>
+    </div>
+    <div class="rv-t table-box">
+      <table class="price-table">
+        <thead><tr><th>Quantidade no pedido</th><th style="text-align:right">Por placa</th></tr></thead>
+        <tbody>
+          <tr><td>1 a 49 placas</td><td>R$ 19,00</td></tr>
+          <tr><td>50 a 99 placas</td><td>R$ 17,00</td></tr>
+          <tr><td>100 a 149 placas</td><td>R$ 16,50</td></tr>
+          <tr><td>150 placas ou mais</td><td>R$ 16,00</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
+
+
 
 <section class="band alt">
   <div class="wrap about">
@@ -480,7 +490,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opa
 </section>
 
 <footer>
-  <img src="img/logo.webp" alt="Método Reino Cacau NFC">
+  <img src="img/logo.webp" loading="lazy" alt="Método Reino Cacau NFC">
   <p>© 2026 Irmãos Reino Cacau · Todos os direitos reservados</p>
   <p style="margin-top:6px">Este site não é afiliado ao Google, Instagram ou Meta.</p>
 </footer>
@@ -559,13 +569,14 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opa
   }
   // poeira dourada no topo
   var cv=document.getElementById('dust');
-  if(cv&&cv.getContext&&!reduce){
+  // só no computador: no celular a animação contínua pesa e drena bateria
+  if(cv&&cv.getContext&&!reduce&&matchMedia('(hover:hover) and (min-width:861px)').matches){
     var ctx=cv.getContext('2d'),P=[],W,H,dpr=Math.min(2,devicePixelRatio||1);
     function size(){W=cv.offsetWidth;H=cv.offsetHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
     size();addEventListener('resize',size);
     for(var i=0;i<70;i++)P.push({x:Math.random(),y:Math.random(),r:Math.random()*1.8+.4,v:Math.random()*.25+.05,a:Math.random()*.6+.2,t:Math.random()*6});
     (function loop(){ctx.clearRect(0,0,W,H);P.forEach(function(p){p.y-=p.v/H*2;p.t+=.02;if(p.y<-.02){p.y=1.02;p.x=Math.random();}
-      var al=p.a*(.6+.4*Math.sin(p.t));ctx.beginPath();ctx.arc(p.x*W+Math.sin(p.t)*6,p.y*H,p.r,0,6.3);ctx.fillStyle='rgba(240,220,168,'+al+')';ctx.shadowColor='rgba(201,165,92,.9)';ctx.shadowBlur=8;ctx.fill();});
+      var al=p.a*(.6+.4*Math.sin(p.t));ctx.beginPath();ctx.arc(p.x*W+Math.sin(p.t)*6,p.y*H,p.r,0,6.3);ctx.fillStyle='rgba(240,220,168,'+al+')';ctx.fill();});
       requestAnimationFrame(loop);})();
   }
   // calculadora: número animado
