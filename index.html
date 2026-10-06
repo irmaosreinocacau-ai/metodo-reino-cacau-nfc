@@ -173,7 +173,7 @@ footer img{width:180px;margin:0 auto 14px;opacity:.85}
 }
 
 /* VSL */
-.vsl{padding-block:56px 64px}
+.vsl{padding-block:8px 64px}
 .vsl .head{margin-bottom:26px}
 .vsl-box{position:relative;max-width:900px;margin:0 auto;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#000;border:1px solid var(--gold);box-shadow:0 0 70px -18px rgba(201,165,92,.55)}
 .vsl-box video{width:100%;height:100%;display:block;object-fit:cover;background:#000}
@@ -184,7 +184,7 @@ footer img{width:180px;margin:0 auto 14px;opacity:.85}
 .vsl-play:focus-visible span{outline:2px solid var(--gold-hi);outline-offset:6px}
 .vsl-play em{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-style:normal;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi)}
 .vsl .cta-row{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:30px}
-@media (max-width:860px){.vsl{padding-block:44px 52px}.vsl-box{border-radius:14px}.vsl-play span{width:74px;height:74px}.vsl-play svg{width:28px;height:28px}}
+@media (max-width:860px){.vsl{padding-block:0 52px}.vsl-box{border-radius:14px}.vsl-play span{width:74px;height:74px}.vsl-play svg{width:28px;height:28px}}
 
 /* calculadora */
 .calc{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--gold);border-radius:22px;overflow:hidden;background:var(--ink)}
@@ -278,9 +278,9 @@ input[type=range]:focus-visible{outline:2px solid var(--gold-hi);outline-offset:
   <canvas id="dust" aria-hidden="true"></canvas><div class="grid-floor" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Renda com placas NFC</span>
-      <h1>Compre a placa por <span class="gold-text shine">R$ 16</span> e venda por até <span class="gold-text shine">R$ 150</span></h1>
-      <p class="lead">Aprenda a vender placas de avaliação do Google e do Instagram para os comércios da sua cidade. A gente te ensina a configurar, abordar e fechar a venda, com fornecedor incluso e mais de 85 vendedores na comunidade.</p>
+      <span class="eyebrow">Curso + Comunidade</span>
+      <h1><span class="gold-text shine">Aprenda a configurar e vender placas NFC</span> de avaliação</h1>
+      <p class="lead">O passo a passo completo para vender placas de avaliação do Google e do Instagram para os comércios da sua cidade, com fornecedor incluso e uma comunidade de mais de 85 vendedores ao seu lado.</p>
       <div class="chips">
         <span class="chip"><b>+85</b> vendedores na comunidade</span>
         <span class="chip">Placas a partir de <b>R$ 16</b></span>
@@ -293,23 +293,6 @@ input[type=range]:focus-visible{outline:2px solid var(--gold-hi);outline-offset:
       <img class="pl a float tilt" src="img/placa-azul.webp" width="460" height="440" alt="">
       <img class="pl b float d2 tilt" src="img/placa-preta.webp" width="460" height="439" alt="">
       <img class="people" src="img/irmaos.webp" width="900" height="742" alt="Os Irmãos Reino Cacau" fetchpriority="high">
-    </div>
-  </div>
-</section>
-
-<section class="band alt proofs-top">
-  <div class="wrap">
-    <div class="rv-t head">
-      <span class="eyebrow">Direto da comunidade</span>
-      <h2>Quem já está vendendo</h2>
-      <p class="lead">Mensagens reais do nosso grupo, com os números de telefone ocultados.</p>
-    </div>
-    <div class="rv-t proofs">
-      <figure><img src="img/depoimento-1.webp" alt="Aluno contando que vendeu mais 5 placas e fez novo pedido" loading="lazy"></figure>
-      <figure><img src="img/depoimento-3.webp" alt="Aluno contando que vendeu uma placa por R$ 150" loading="lazy"></figure>
-      <figure><img src="img/depoimento-2.webp" alt="Aluno contando que vendeu 4 placas" loading="lazy"></figure>
-      <figure><img src="img/depoimento-4.webp" alt="Aluno contando que finalmente encontrou um negócio que dá certo" loading="lazy"></figure>
-      <figure><img src="img/depoimento-5.webp" alt="Aluno elogiando a qualidade das placas e a comunidade" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -341,6 +324,23 @@ input[type=range]:focus-visible{outline:2px solid var(--gold-hi);outline-offset:
   v.addEventListener('play',function(){v.controls=true;if(b.parentNode)b.remove();});
 })();
 </script>
+
+<section class="band alt proofs-top">
+  <div class="wrap">
+    <div class="rv-t head">
+      <span class="eyebrow">Direto da comunidade</span>
+      <h2>Quem já está vendendo</h2>
+      <p class="lead">Mensagens reais do nosso grupo, com os números de telefone ocultados.</p>
+    </div>
+    <div class="rv-t proofs">
+      <figure><img src="img/depoimento-1.webp" alt="Aluno contando que vendeu mais 5 placas e fez novo pedido" loading="lazy"></figure>
+      <figure><img src="img/depoimento-3.webp" alt="Aluno contando que vendeu uma placa por R$ 150" loading="lazy"></figure>
+      <figure><img src="img/depoimento-2.webp" alt="Aluno contando que vendeu 4 placas" loading="lazy"></figure>
+      <figure><img src="img/depoimento-4.webp" alt="Aluno contando que finalmente encontrou um negócio que dá certo" loading="lazy"></figure>
+      <figure><img src="img/depoimento-5.webp" alt="Aluno elogiando a qualidade das placas e a comunidade" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
 
 <div class="marquee" aria-hidden="true"><div class="track"><span>Placas NFC</span><span>Google</span><span>Instagram</span><span>QR Code</span><span>Fornecedor incluso</span><span>+85 vendedores</span><span>Acesso imediato</span><span>Método passo a passo</span><span>Placas NFC</span><span>Google</span><span>Instagram</span><span>QR Code</span><span>Fornecedor incluso</span><span>+85 vendedores</span><span>Acesso imediato</span><span>Método passo a passo</span></div></div>
 <section class="band alt">
