@@ -168,6 +168,20 @@ footer img{width:180px;margin:0 auto 14px;opacity:.85}
   .sticky{display:flex}
 }
 
+/* VSL */
+.vsl{padding-block:8px 64px}
+.vsl .head{margin-bottom:26px}
+.vsl-box{position:relative;max-width:900px;margin:0 auto;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#000;border:1px solid var(--gold);box-shadow:0 0 70px -18px rgba(201,165,92,.55)}
+.vsl-box video{width:100%;height:100%;display:block;object-fit:cover;background:#000}
+.vsl-play{position:absolute;inset:0;display:grid;place-items:center;border:0;padding:0;cursor:pointer;background:linear-gradient(180deg,rgba(10,9,7,.05),rgba(10,9,7,.45))}
+.vsl-play span{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;color:#1b1307;background:linear-gradient(135deg,#f2dca4,#b88a3e);box-shadow:0 0 0 10px rgba(240,220,168,.18),0 14px 40px -8px rgba(0,0,0,.7);animation:pulse 2.4s ease-in-out infinite;transition:transform .2s}
+.vsl-play:hover span{transform:scale(1.07)}
+.vsl-play svg{width:34px;height:34px;margin-left:5px}
+.vsl-play:focus-visible span{outline:2px solid var(--gold-hi);outline-offset:6px}
+.vsl-play em{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-style:normal;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi)}
+.vsl .cta-row{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:30px}
+@media (max-width:860px){.vsl{padding-block:0 52px}.vsl-box{border-radius:14px}.vsl-play span{width:74px;height:74px}.vsl-play svg{width:28px;height:28px}}
+
 /* calculadora */
 .calc{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--gold);border-radius:22px;overflow:hidden;background:var(--ink)}
 .calc > *{min-width:0;padding:34px}
@@ -274,6 +288,33 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opa
     </div>
   </div>
 </section>
+
+<section class="vsl" id="video">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Assista antes de começar</span>
+      <h2>A nossa história e como o método funciona</h2>
+    </div>
+    <div class="vsl-box">
+      <video id="vsl" src="video/vsl.mp4" poster="video/vsl-capa.jpg" preload="metadata" playsinline controlslist="nodownload"></video>
+      <button class="vsl-play" id="vsl-play" type="button" aria-label="Assistir ao vídeo"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></svg></span><em>Toque para assistir · 2 min</em></button>
+    </div>
+    <div class="cta-row">
+      <a class="cta js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj">Quero começar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="note">R$ 97 · pagamento único · garantia de 7 dias</p>
+    </div>
+  </div>
+</section>
+
+<script>
+// VSL: botão de play com som; depois mostra os controles nativos
+(function(){
+  var v=document.getElementById('vsl'),b=document.getElementById('vsl-play');
+  if(!v||!b) return;
+  b.addEventListener('click',function(){v.controls=true;b.hidden=true;var p=v.play();if(p&&p.catch)p.catch(function(){});
+    try{if(window.fbq)fbq('trackCustom','VSLPlay');}catch(e){}});
+})();
+</script>
 
 <div class="marquee" aria-hidden="true"><div class="track"><span>Placas NFC</span><span>Google</span><span>Instagram</span><span>QR Code</span><span>Fornecedor incluso</span><span>+85 vendedores</span><span>Acesso imediato</span><span>Método passo a passo</span><span>Placas NFC</span><span>Google</span><span>Instagram</span><span>QR Code</span><span>Fornecedor incluso</span><span>+85 vendedores</span><span>Acesso imediato</span><span>Método passo a passo</span></div></div>
 <section class="band alt">
