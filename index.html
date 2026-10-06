@@ -311,8 +311,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opa
 (function(){
   var v=document.getElementById('vsl'),b=document.getElementById('vsl-play');
   if(!v||!b) return;
-  b.addEventListener('click',function(){v.controls=true;b.hidden=true;var p=v.play();if(p&&p.catch)p.catch(function(){});
+  b.addEventListener('click',function(){v.controls=true;b.remove();var p=v.play();if(p&&p.catch)p.catch(function(){});
     try{if(window.fbq)fbq('trackCustom','VSLPlay');}catch(e){}});
+  v.addEventListener('play',function(){v.controls=true;if(b.parentNode)b.remove();});
 })();
 </script>
 
