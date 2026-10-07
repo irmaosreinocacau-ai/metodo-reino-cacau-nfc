@@ -11,15 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;600;700;800&display=swap">
 
 <!-- Meta Pixel: Pixel Curso NFC (somente PageView na LP; a compra é enviada pela Hubla) -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1710189350044708');
-fbq('track','PageView');
-</script>
+<script src="js/pixel.js"></script>
 
 <style>
 /* Layout: coluna única escura, faixas alternadas preto / preto-quente, detalhes em fio dourado; oferta fixa no rodapé no celular */
@@ -314,16 +306,7 @@ input[type=range]:focus-visible{outline:2px solid var(--gold-hi);outline-offset:
   </div>
 </section>
 
-<script>
-// VSL: botão de play com som; depois mostra os controles nativos
-(function(){
-  var v=document.getElementById('vsl'),b=document.getElementById('vsl-play');
-  if(!v||!b) return;
-  b.addEventListener('click',function(){v.controls=true;b.remove();var p=v.play();if(p&&p.catch)p.catch(function(){});
-    try{if(window.fbq)fbq('trackCustom','VSLPlay');}catch(e){}});
-  v.addEventListener('play',function(){v.controls=true;if(b.parentNode)b.remove();});
-})();
-</script>
+<script src="js/vsl.js"></script>
 
 <section class="band alt proofs-top">
   <div class="wrap">
@@ -500,88 +483,11 @@ input[type=range]:focus-visible{outline:2px solid var(--gold-hi);outline-offset:
   <a class="cta js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj">Quero começar</a>
 </div>
 
-<script>
-// Repassa UTMs e fbclid da URL da LP para o checkout da Hubla (rastreamento das campanhas)
-(function(){
-  try{
-    var q=new URLSearchParams(location.search), keep=new URLSearchParams();
-    q.forEach(function(v,k){ if(/^utm_|^fbclid$|^src$|^sck$/.test(k)) keep.set(k,v); });
-    var s=keep.toString(); if(!s) return;
-    document.querySelectorAll('.js-checkout').forEach(function(a){
-      a.href += (a.href.indexOf('?')>-1?'&':'?') + s;
-    });
-  }catch(e){}
-})();
-</script>
+<script src="js/utm.js"></script>
 
-<script>
-// Calculadora: custo por placa segue as faixas do fornecedor
-(function(){
-  var q=document.getElementById('qtd'), p=document.getElementById('preco');
-  if(!q||!p) return;
-  var brl=function(v,dec){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0});};
-  var cur=null,raf=0,L=document.getElementById('lucro');
-  function tween(to){if(cur===null||matchMedia('(prefers-reduced-motion: reduce)').matches){cur=to;L.textContent=brl(to);return;}var from=cur,st=null;cancelAnimationFrame(raf);(function f(ts){if(!st)st=ts;var k=Math.min(1,(ts-st)/350);cur=Math.round(from+(to-from)*(1-Math.pow(1-k,3)));L.textContent=brl(cur);if(k<1)raf=requestAnimationFrame(f);})(performance.now());}
-  function unit(n){return n>=150?16:n>=100?16.5:n>=50?17:19;}
-  function upd(){
-    var n=+q.value, pr=+p.value, u=unit(n), fat=n*pr, custo=n*u;
-    document.getElementById('qtd-out').textContent=n;
-    document.getElementById('preco-out').textContent=brl(pr);
-    document.getElementById('unit').textContent=brl(u,2);
-    document.getElementById('fat').textContent=brl(fat);
-    document.getElementById('custo').textContent=brl(custo);
-    tween(fat-custo);
-  }
-  q.addEventListener('input',upd); p.addEventListener('input',upd); upd();
-})();
-</script>
+<script src="js/calculadora.js"></script>
 
-<script>
-(function(){
-  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // barra de progresso
-  var bar=document.getElementById('progress');
-  function prog(){var h=document.documentElement;var p=h.scrollTop/((h.scrollHeight-h.clientHeight)||1);bar.style.width=(p*100)+'%';}
-  addEventListener('scroll',prog,{passive:true});prog();
-  // revelar ao rolar (só o que está abaixo da primeira tela)
-  var els=[].slice.call(document.querySelectorAll('.rv-t'));
-  if(!reduce&&'IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
-    els.forEach(function(el){if(el.getBoundingClientRect().top>innerHeight){el.classList.add('rv');io.observe(el);}});
-    setTimeout(function(){els.forEach(function(el){el.classList.add('in');});},6000);
-  }
-  // contadores
-  var cs=[].slice.call(document.querySelectorAll('[data-count]'));
-  function run(el){var t=+el.dataset.count,p=el.dataset.prefix||'',s=el.dataset.suffix||'',st=null;
-    function f(ts){if(!st)st=ts;var k=Math.min(1,(ts-st)/1400);k=1-Math.pow(1-k,3);el.textContent=p+Math.round(t*k)+s;if(k<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
-  if(!reduce&&'IntersectionObserver' in window){var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);io2.unobserve(e.target);}});},{threshold:.6});cs.forEach(function(c){io2.observe(c);});}
-  // carrossel
-  var m=document.getElementById('modules');
-  document.querySelectorAll('.nav-btn').forEach(function(b){b.addEventListener('click',function(){var w=m.querySelector('figure').offsetWidth+18;m.scrollBy({left:b.classList.contains('next')?w:-w,behavior:reduce?'auto':'smooth'});});});
-  // inclinação 3D nas placas
-  if(!reduce&&matchMedia('(hover:hover)').matches){
-    document.querySelectorAll('.tilt').forEach(function(el){
-      el.addEventListener('mousemove',function(ev){var r=el.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width-.5,y=(ev.clientY-r.top)/r.height-.5;el.style.transform='perspective(700px) rotateY('+(x*18)+'deg) rotateX('+(-y*18)+'deg) scale(1.04)';});
-      el.addEventListener('mouseleave',function(){el.style.transform='';});
-    });
-    var of=document.querySelector('.offer');
-    if(of)of.addEventListener('mousemove',function(ev){var r=of.getBoundingClientRect();of.style.setProperty('--mx',(ev.clientX-r.left)+'px');of.style.setProperty('--my',(ev.clientY-r.top)+'px');});
-  }
-  // poeira dourada no topo
-  var cv=document.getElementById('dust');
-  // só no computador: no celular a animação contínua pesa e drena bateria
-  if(cv&&cv.getContext&&!reduce&&matchMedia('(hover:hover) and (min-width:861px)').matches){
-    var ctx=cv.getContext('2d'),P=[],W,H,dpr=Math.min(2,devicePixelRatio||1);
-    function size(){W=cv.offsetWidth;H=cv.offsetHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
-    size();addEventListener('resize',size);
-    for(var i=0;i<70;i++)P.push({x:Math.random(),y:Math.random(),r:Math.random()*1.8+.4,v:Math.random()*.25+.05,a:Math.random()*.6+.2,t:Math.random()*6});
-    (function loop(){ctx.clearRect(0,0,W,H);P.forEach(function(p){p.y-=p.v/H*2;p.t+=.02;if(p.y<-.02){p.y=1.02;p.x=Math.random();}
-      var al=p.a*(.6+.4*Math.sin(p.t));ctx.beginPath();ctx.arc(p.x*W+Math.sin(p.t)*6,p.y*H,p.r,0,6.3);ctx.fillStyle='rgba(240,220,168,'+al+')';ctx.fill();});
-      requestAnimationFrame(loop);})();
-  }
-  // calculadora: número animado
-})();
-</script>
+<script src="js/efeitos.js"></script>
 
 </body>
 </html>
