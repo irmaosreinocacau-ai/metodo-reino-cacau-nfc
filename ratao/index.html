@@ -238,6 +238,12 @@ input[type=range]:focus-visible{outline:2px solid var(--gold-hi);outline-offset:
 @media (prefers-reduced-motion:reduce){.cta,.cta::after,.float,.marquee .track,.gold-text.shine,.offer::after{animation:none!important}.rv{opacity:1!important;translate:none!important}}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* menos azul nas letras: títulos e números em branco, azul só nos detalhes */
+h2,h3{color:#ffffff}
+.total strong.gold-text,.price strong.gold-text{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#ffffff;animation:none}
+.stats b,.field output,.price-table td:last-child,.sticky .p b{color:#ffffff}
+.rows b{white-space:nowrap}
 </style>
 </head>
 <body>
