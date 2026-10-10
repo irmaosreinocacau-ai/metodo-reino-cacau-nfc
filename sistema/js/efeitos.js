@@ -46,7 +46,7 @@
 (function(){
   document.querySelectorAll('.js-checkout').forEach(function(a){
     a.addEventListener('click',function(){
-      try{ if(window.fbq) fbq('track','InitiateCheckout',{value:97,currency:'BRL',content_name:'LINKA'}); }catch(e){}
+      try{ if(window.fbq) fbq('track','InitiateCheckout',{value:47.9,currency:'BRL',content_name:'LINKA'}); }catch(e){}
     });
   });
 })();
