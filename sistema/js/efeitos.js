@@ -41,3 +41,12 @@
   }
   document.querySelectorAll(".net-bg").forEach(function(c){silk(c,!c.classList.contains("silk-sec"));});
 })();
+
+// Pixel: avisa a Meta quando a pessoa clica para ir ao checkout
+(function(){
+  document.querySelectorAll('.js-checkout').forEach(function(a){
+    a.addEventListener('click',function(){
+      try{ if(window.fbq) fbq('track','InitiateCheckout',{value:97,currency:'BRL',content_name:'LINKA'}); }catch(e){}
+    });
+  });
+})();
