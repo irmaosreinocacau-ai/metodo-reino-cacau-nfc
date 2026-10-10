@@ -93,6 +93,18 @@ section{padding-block:72px}
 .float-tag span{color:var(--muted);font-weight:600}
 
 /* virada */
+/* VSL LINKA */
+.vsl-sec{padding-block:64px 56px;text-align:center}
+.vsl-sec h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin:12px auto 0;max-width:640px}
+.vsl-sec .eyebrow{justify-content:center}
+.vsl-sec .lead{margin:10px auto 0;max-width:520px}
+.vsl-box{position:relative;width:min(340px,100%);aspect-ratio:9/16;margin:28px auto 0;border-radius:28px;overflow:hidden;background:#000;border:1px solid var(--line-dark);box-shadow:0 40px 80px -40px rgba(0,0,0,.7)}
+.vsl-box video{width:100%;height:100%;display:block;object-fit:cover;background:#000}
+.vsl-play{position:absolute;inset:0;display:grid;place-items:center;border:0;padding:0;cursor:pointer;background:linear-gradient(180deg,rgba(15,23,42,0) 40%,rgba(15,23,42,.55))}
+.vsl-play span{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;color:var(--navy);background:var(--gold);box-shadow:0 12px 30px rgba(0,0,0,.35);transition:transform .2s}
+.vsl-play:hover span{transform:scale(1.07)}
+.vsl-play svg{width:32px;height:32px;margin-left:5px}
+.vsl-sec .btn{margin-top:26px}
 .shift{padding-block:64px}
 .shift .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 .shift h2{font-size:clamp(28px,3.6vw,42px);font-weight:800}
@@ -354,6 +366,19 @@ section.silk>.wrap{position:relative;z-index:1}
       </div>
     </div>
   </section>
+
+  <section class="dark vsl-sec">
+    <div class="wrap">
+      <p class="eyebrow">Veja por dentro</p>
+      <h2>O LINKA por dentro, em pouco mais de um minuto</h2>
+      <div class="vsl-box">
+        <video id="vsl" src="/video/linka-vsl.mp4" poster="/video/linka-vsl-capa.webp" preload="none" playsinline controlslist="nodownload"></video>
+        <button class="vsl-play" id="vsl-play" type="button" aria-label="Assistir ao vídeo"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg></span></button>
+      </div>
+      <a class="btn js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj" target="_blank" rel="noopener">Quero meu acesso por R$ 47,90</a>
+    </div>
+  </section>
+  <script src="/js/vsl.js"></script>
 
   <section class="dark shift">
     <div class="wrap">
