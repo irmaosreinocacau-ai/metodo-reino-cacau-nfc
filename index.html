@@ -105,6 +105,27 @@ section{padding-block:72px}
 .vsl-play:hover span{transform:scale(1.07)}
 .vsl-play svg{width:32px;height:32px;margin-left:5px}
 .vsl-sec .btn{margin-top:26px}
+/* calculadora LINKA */
+.calc{display:grid;grid-template-columns:1fr 1fr;margin-top:32px;border-radius:24px;overflow:hidden;background:var(--navy);color:var(--white);border:1px solid var(--gold)}
+.calc>*{min-width:0;padding:32px}
+.calc-in{display:flex;flex-direction:column;gap:28px;border-right:1px solid var(--line-dark)}
+.calc .field{display:flex;flex-direction:column;gap:10px}
+.calc .field label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-weight:700}
+.calc .field output{font-family:var(--f-mono);font-size:22px;color:var(--gold);font-variant-numeric:tabular-nums}
+.calc .field small{color:var(--muted-dark);font-size:13px}
+.calc input[type=range]{width:100%;accent-color:var(--gold);height:28px;cursor:pointer}
+.calc .seg{display:flex;gap:8px}
+.calc .seg button{flex:1;border:1px solid var(--line-dark);background:var(--navy-2);color:var(--white);border-radius:12px;padding:10px;font:inherit;font-weight:700;cursor:pointer}
+.calc .seg button[aria-pressed=true]{border-color:var(--gold);color:var(--gold)}
+.calc-out{display:flex;flex-direction:column;justify-content:center;gap:16px;background:linear-gradient(180deg,rgba(212,167,44,.10),transparent 70%)}
+.calc .rows{display:grid;gap:10px;font-variant-numeric:tabular-nums}
+.calc .rows div{display:flex;justify-content:space-between;gap:12px;color:var(--muted-dark);font-size:15px;padding-bottom:10px;border-bottom:1px solid var(--line-dark)}
+.calc .rows b{color:var(--white);font-weight:700}
+.calc .total small{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.calc .total strong{display:block;font-family:var(--f-mono);font-size:clamp(36px,6vw,52px);line-height:1.1;color:var(--gold);font-variant-numeric:tabular-nums}
+.calc .disc{font-size:12px;color:var(--muted-dark)}
+.calc .btn{width:100%}
+@media (max-width:860px){.calc{grid-template-columns:1fr}.calc-in{border-right:0;border-bottom:1px solid var(--line-dark)}.calc>*{padding:24px 20px}}
 /* qualidades LINKA */
 .quali{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
 .quali>div{border-radius:20px;padding:24px;background:var(--navy);color:var(--white);border:1px solid var(--line-dark)}
@@ -525,7 +546,44 @@ section.silk>.wrap{position:relative;z-index:1}
         <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></i><h3>Envio rápido</h3><p>O fornecedor despacha direto para a sua casa, com rastreio no pedido.</p></div>
         <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg></i><h3>Qualidade excepcional</h3><p>A mesma placa que a gente vende na rua todo dia, com acabamento que o cliente sente.</p></div>
       </div>
-      <div class="quali-cta"><a class="btn js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj" target="_blank" rel="noopener">Quero meu acesso por R$ 47,90</a></div>
+    </div>
+  </section>
+
+  <section class="silk" id="calculadora" style="padding-top:0">
+    <canvas class="net-bg silk-sec" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Calculadora</p>
+        <h2>Faça a sua conta</h2>
+        <p class="lead">Escolha quantas placas quer vender por mês e por quanto. O custo de cada placa segue a tabela do fornecedor no LINKA.</p>
+      </div>
+      <div class="calc">
+        <div class="calc-in">
+          <div class="field">
+            <label for="qtd">Placas vendidas por mês <output id="qtd-out">20</output></label>
+            <input type="range" id="qtd" min="5" max="300" step="5" value="20">
+            <small>De 5 a 300 placas</small>
+          </div>
+          <div class="field">
+            <label for="preco">Preço de venda por placa <output id="preco-out">R$ 100</output></label>
+            <input type="range" id="preco" min="40" max="200" step="5" value="100">
+            <small>No grupo, as vendas costumam ficar entre R$ 80 e R$ 150</small>
+          </div>
+          <div class="field">
+            <label>Tamanho da placa</label>
+            <div class="seg"><button type="button" data-tam="12" aria-pressed="true">12×12</button><button type="button" data-tam="10" aria-pressed="false">10×10</button></div>
+          </div>
+        </div>
+        <div class="calc-out" aria-live="polite">
+          <div class="rows">
+            <div><span>Faturamento</span><b id="fat">R$ 2.000</b></div>
+            <div><span>Custo das placas (<span id="unit">R$ 19,00</span> cada)</span><b id="custo">R$ 380</b></div>
+          </div>
+          <div class="total"><small>Lucro estimado no mês</small><strong id="lucro">R$ 1.620</strong></div>
+          <p class="disc">Simulação ilustrativa. O resultado depende do seu esforço, da sua região e do preço que você pratica. Não é promessa de ganho.</p>
+          <a class="btn js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj" target="_blank" rel="noopener">Quero meu acesso por R$ 47,90</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -624,6 +682,7 @@ section.silk>.wrap{position:relative;z-index:1}
   <a class="btn js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj" target="_blank" rel="noopener">Quero meu acesso</a>
 </div>
 
+<script src="/js/calc-linka.js" defer></script>
 <script src="/js/utm.js"></script>
 <script src="/sistema/js/efeitos.js"></script>
 </body>
