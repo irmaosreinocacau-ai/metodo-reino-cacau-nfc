@@ -1,0 +1,5 @@
+/p/*  https://imqzqbyurzflgasypjvo.supabase.co/functions/v1/r/:splat  302
+/termos  /index.html  200
+/privacidade  /index.html  200
+/:slug  /bio.html  200
+/:slug/  /bio.html  200
