@@ -205,7 +205,7 @@ Meu nome: ${l.name}`;window.open(Et(Be),"_blank","noopener")},children:"Pedir or
 @keyframes lk-rot{to{transform:rotate(360deg)}}
 
 /* primeira dobra */
-.lk-hero{position:relative;overflow:hidden;padding:84px 0 40px}
+.lk-hero{position:relative;overflow:hidden;padding:84px 0 12px}
 .lk-bg{position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(60% 50% at 22% 38%,rgba(212,167,44,.12),transparent 70%),radial-gradient(55% 60% at 85% 10%,rgba(46,84,170,.28),transparent 70%),linear-gradient(180deg,#0A1324 0%,var(--bg) 100%)}
 .lk-bg::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(248,250,252,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(248,250,252,.045) 1px,transparent 1px);background-size:48px 48px;
@@ -214,9 +214,9 @@ Meu nome: ${l.name}`;window.open(Et(Be),"_blank","noopener")},children:"Pedir or
 .lk-hero-head{grid-area:head}.lk-hero-plates{grid-area:plates;height:330px;display:flex;justify-content:center}
 .lk-hero-plates>.lkh{height:100%;width:auto!important;aspect-ratio:1.18/1;max-width:100%}.lk-hero-copy{grid-area:copy}.lk-hero-card{grid-area:card;min-width:0;scroll-margin:84px}
 @media(min-width:1024px){
-  .lk-hero{padding:120px 0 80px}
+  .lk-hero{padding:120px 0 8px}
   .lk-hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:56px;row-gap:22px;align-items:start;grid-template-areas:"head card" "copy card" "plates card"}
-  .lk-hero-plates{height:560px}
+  .lk-hero-plates{height:560px;margin-bottom:-56px}
   .lk-hero-card{position:relative;align-self:center}
 }
 .lk-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold2)}
@@ -253,6 +253,8 @@ Meu nome: ${l.name}`;window.open(Et(Be),"_blank","noopener")},children:"Pedir or
 /* seções */
 .lk-sec{position:relative;padding:72px 0;border-top:1px solid var(--line);overflow:hidden}
 @media(min-width:1024px){.lk-sec{padding:104px 0}}
+.lk-hero+.lk-sec{padding-top:48px}
+@media(min-width:1024px){.lk-hero+.lk-sec{padding-top:64px}}
 .lk-sec-alt{background:radial-gradient(60% 50% at 50% 0%,rgba(46,84,170,.14),transparent 70%),var(--navy)}
 .lk-head{max-width:720px}
 .lk-head-row{max-width:none;display:flex;flex-direction:column;gap:20px}
