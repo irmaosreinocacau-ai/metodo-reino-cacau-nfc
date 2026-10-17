@@ -321,6 +321,26 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 .track div:last-child::before{animation:wait 1.6s ease-in-out 1.8s infinite}
 @keyframes wait{50%{background:#E9D9A6}}
 .card-offer{position:relative}
+/* proposta conversão */
+.trust{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:16px;padding:0;list-style:none;font-size:13.5px;font-weight:600;color:var(--muted)}
+.trust li{display:flex;align-items:center;gap:6px}
+.trust svg{width:16px;height:16px;color:var(--ok);flex:none}
+.proofbar{display:flex;align-items:center;gap:12px;margin-top:22px;padding:12px 14px;border-radius:14px;background:var(--white);border:1px solid var(--line);max-width:520px}
+.proofbar .faces{display:flex;flex:none;padding-left:12px}
+.proofbar .faces img{width:38px;height:38px;object-fit:contain;margin-left:-12px;filter:drop-shadow(0 3px 4px #0003)}
+.proofbar .faces img:first-child{margin-left:0}
+.proofbar p{margin:0;font-size:14px;line-height:1.35}
+.proofbar b{color:var(--navy)}
+.price-sub{text-align:center;color:var(--muted-dark);font-size:14px;margin-top:6px}
+.pay-ways{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pay-ways span{font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;border:1px solid var(--line-dark);color:var(--muted-dark)}
+.after{margin-top:22px;padding-top:18px;border-top:1px solid var(--line-dark)}
+.after h3{font-size:15px;margin:0 0 10px;color:var(--white)}
+.after ol{margin:0;padding-left:20px;display:grid;gap:6px;color:var(--muted-dark);font-size:14px}
+.after ol b{color:var(--white)}
+.card-offer .after li{display:list-item;font-size:14px}
+.sticky small em{font-style:normal;color:var(--gold)}
+
 .card-offer::before{content:"";position:absolute;inset:-1px;border-radius:24px;padding:1px;background:conic-gradient(from var(--a,0deg),transparent 0 70%,var(--gold) 85%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 6s linear infinite;pointer-events:none}
 @property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
 @keyframes spin{to{--a:360deg}}
@@ -399,14 +419,22 @@ section.silk>.wrap{position:relative;z-index:1}
         <div class="hero-cta">
           <a class="btn js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj" target="_blank" rel="noopener">Quero meu acesso por R$ 47,90
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <span class="note">7 dias de garantia</span>
         </div>
+        <ul class="trust">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>7 dias de garantia</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Acesso na hora no seu e-mail</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>Pix, cartão ou 3x de R$ 17</li>
+        </ul>
         <ul class="ticks">
           <li>Fornecedor direto</li>
           <li>Entrega na sua casa</li>
           <li>Ativação pelo celular</li>
           <li>Grupo com +85 vendedores</li>
         </ul>
+        <div class="proofbar">
+          <div class="faces"><img src="/sistema/img/google-azul-3d.webp" alt=""><img src="/sistema/img/instagram-rosa-3d.webp" alt=""><img src="/sistema/img/google-preta-3d.webp" alt=""></div>
+          <p><b>+270 placas já pedidas</b> pelos alunos no LINKA nesta primeira semana.</p>
+        </div>
       </div>
       <div class="phone">
         
@@ -429,6 +457,23 @@ section.silk>.wrap{position:relative;z-index:1}
     </div>
   </section>
   <script src="/js/vsl.js"></script>
+
+  <section class="silk">
+    <canvas class="net-bg silk-sec" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Quem já está vendendo</p>
+        <h2>Mensagens de quem entrou</h2>
+      </div>
+      <div class="proofs">
+        <figure><img src="/sistema/img/depoimento-1.webp" width="620" height="707" alt="Aluno contando que vendeu mais 5 placas e fez novo pedido" loading="lazy"></figure>
+        <figure><img src="/sistema/img/depoimento-5.webp" width="620" height="769" alt="Aluno elogiando a qualidade das placas e o grupo" loading="lazy"></figure>
+        <figure><img src="/sistema/img/depoimento-3.webp" width="620" height="288" alt="Aluno contando que vendeu uma placa por R$ 150" loading="lazy"></figure>
+        <figure><img src="/sistema/img/depoimento-2.webp" width="620" height="477" alt="Aluno contando que vendeu 4 placas" loading="lazy"></figure>
+        <figure><img src="/sistema/img/depoimento-4.webp" width="620" height="559" alt="Aluno contando que encontrou um negócio que dá certo" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
 
   <section class="dark shift">
     <div class="wrap">
@@ -650,22 +695,6 @@ section.silk>.wrap{position:relative;z-index:1}
     </div>
   </section>
 
-  <section class="silk">
-    <canvas class="net-bg silk-sec" aria-hidden="true"></canvas>
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">Quem já está vendendo</p>
-        <h2>Mensagens de quem entrou</h2>
-      </div>
-      <div class="proofs">
-        <figure><img src="/sistema/img/depoimento-1.webp" width="620" height="707" alt="Aluno contando que vendeu mais 5 placas e fez novo pedido" loading="lazy"></figure>
-        <figure><img src="/sistema/img/depoimento-5.webp" width="620" height="769" alt="Aluno elogiando a qualidade das placas e o grupo" loading="lazy"></figure>
-        <figure><img src="/sistema/img/depoimento-3.webp" width="620" height="288" alt="Aluno contando que vendeu uma placa por R$ 150" loading="lazy"></figure>
-        <figure><img src="/sistema/img/depoimento-2.webp" width="620" height="477" alt="Aluno contando que vendeu 4 placas" loading="lazy"></figure>
-        <figure><img src="/sistema/img/depoimento-4.webp" width="620" height="559" alt="Aluno contando que encontrou um negócio que dá certo" loading="lazy"></figure>
-      </div>
-    </div>
-  </section>
 
   <section class="us silk" style="padding-top:0">
     <canvas class="net-bg silk-sec" aria-hidden="true"></canvas>
@@ -692,9 +721,18 @@ section.silk>.wrap{position:relative;z-index:1}
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span><b>Grupo no WhatsApp</b><small>Com mais de 85 vendedores</small></span></li>
         </ul>
         <div class="price"><span>R$</span><b>47,90</b></div>
+        <p class="price-sub">à vista, ou 3x de R$ 17 no cartão · pagamento único</p>
+        <div class="pay-ways"><span>Pix</span><span>Cartão</span><span>Boleto</span></div>
         <a class="btn js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj" target="_blank" rel="noopener">Quero meu acesso</a>
         <p class="guarantee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>7 dias de garantia: se não for para você, devolvemos o valor.</p>
-        <p class="guarantee" style="margin-top:8px">Pagamento único. O acesso chega no seu e-mail logo depois da compra.</p>
+        <div class="after">
+          <h3>O que acontece depois de pagar</h3>
+          <ol>
+            <li><b>Na hora:</b> o acesso chega no seu e-mail.</li>
+            <li><b>No mesmo dia:</b> você entra no LINKA, assiste as aulas e entra no grupo.</li>
+            <li><b>Quando quiser:</b> faz o primeiro pedido de placas, a partir de 1 placa.</li>
+          </ol>
+        </div>
       </div>
     </div>
   </section>
@@ -724,7 +762,7 @@ section.silk>.wrap{position:relative;z-index:1}
 </footer>
 
 <div class="sticky" role="region" aria-label="Comprar acesso">
-  <div><small>Acesso ao LINKA</small><b>R$ 47,90</b></div>
+  <div><small><em>7 dias de garantia</em></small><b>R$ 47,90</b></div>
   <a class="btn js-checkout" href="https://pay.hub.la/6ctDNDmEOa7J4SYfQjUj" target="_blank" rel="noopener">Quero meu acesso</a>
 </div>
 
