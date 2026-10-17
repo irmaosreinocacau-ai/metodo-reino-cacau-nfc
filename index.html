@@ -126,6 +126,28 @@ section{padding-block:72px}
 .calc .disc{font-size:12px;color:var(--muted-dark)}
 .calc .btn{width:100%}
 @media (max-width:860px){.calc{grid-template-columns:1fr}.calc-in{border-right:0;border-bottom:1px solid var(--line-dark)}.calc>*{padding:24px 20px}}
+/* novidade: placas de premiação */
+.premio .sec-head{margin-inline:auto;text-align:center;justify-items:center}
+.premio .lead{margin-inline:auto}
+.novo{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#1A1405;background:linear-gradient(135deg,#FFF3C8,#E9C24F 45%,#B8871B 75%,#F3D27A);padding:7px 14px;border-radius:999px;box-shadow:0 8px 20px -10px rgba(212,167,44,.9)}
+.premio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:44px;padding:0;list-style:none;align-items:end}
+.premio-grid li{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.premio-grid img{width:100%;max-width:330px;border-radius:14px;box-shadow:0 34px 60px -28px rgba(15,23,42,.75)}
+.premio-grid b{font-family:var(--f-mono);font-size:20px;font-variant-numeric:tabular-nums}
+.premio-grid span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.premio-grid .t50 b{color:#6B727D}.premio-grid .t100 b{color:var(--gold-ink)}
+.premio-note{margin-top:36px;text-align:center;font-size:15px;color:var(--muted)}
+.premio-note strong{color:var(--navy)}
+@media (max-width:760px){
+  .premio-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:72%;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin-inline:-20px;padding:0 20px 8px;scrollbar-width:none}
+  .premio-grid::-webkit-scrollbar{display:none}
+  .premio-grid li{scroll-snap-align:center}
+  section .premio-dots{display:flex}
+}
+.premio-grid{position:relative}
+.premio-dots{display:none;justify-content:center;gap:8px;margin-top:18px}
+.premio-dots button{width:8px;height:8px;padding:0;border:0;border-radius:999px;background:#CBD5E1;cursor:pointer;transition:width .3s ease,background .3s ease}
+.premio-dots button[aria-current=true]{width:24px;background:var(--gold)}
 /* o que você recebe */
 .recebe{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px}
 .recebe div{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:center;border:1px solid var(--line-dark);border-radius:18px;padding:18px 20px;background:var(--navy-2)}
@@ -246,9 +268,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
   .models{grid-template-columns:repeat(3,1fr)}
   .bonus{grid-template-columns:1fr}
   .top .btn-sm{display:none}
-  .sticky{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--navy);color:var(--white);border-top:1px solid var(--line-dark)}
-  .sticky b{font-family:var(--f-mono);color:var(--gold);font-size:20px}
-  .sticky small{display:block;color:var(--muted-dark);font-size:12px}
+  .sticky{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(115deg,#050913 0%,#08101F 55%,#0E1D3D 80%,#1A3A80 100%);color:var(--white);border-top:1px solid rgba(212,167,44,.45);box-shadow:0 -12px 30px -14px rgba(6,11,24,.7),inset 0 1px 0 rgba(255,255,255,.08)}
+  .sticky b{display:block;font-family:var(--f-display);font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--gold);font-size:24px;font-variant-numeric:tabular-nums}
+  .sticky small{display:block;color:#C7D3E6;font-size:12px;font-weight:600}
   .sticky .btn{padding:12px 18px;font-size:15px;box-shadow:none}
   footer{padding-bottom:110px}
 }
@@ -418,6 +440,40 @@ section.silk>.wrap{position:relative;z-index:1}
         <div class="no"><b>Sem o sistema</b>Procurar fornecedor, pedir no WhatsApp, esperar resposta, não saber se a placa é boa, configurar cada uma num site diferente.</div>
         <div class="yes"><b>Com o LINKA</b>Pede pelo celular, paga no Pix, acompanha o pedido até a sua porta e ativa a placa escaneando o QR. Tudo num lugar só.</div>
       </div>
+    </div>
+  </section>
+
+  <section class="premio" id="premiacao">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="novo">Novidade</span>
+        <h2>Bateu a meta, ganhou placa</h2>
+        <p class="lead">Agora o revendedor LINKA que chega a R$ 10 mil, R$ 50 mil e R$ 100 mil em vendas recebe uma placa de premiação em acrílico, com o próprio nome.</p>
+      </div>
+      <ul class="premio-grid">
+        <li><img src="/img/premiacao/placa-10-400.webp" srcset="/img/premiacao/placa-10-400.webp 400w, /img/premiacao/placa-10-800.webp 800w" sizes="(min-width:760px) 320px, 72vw" width="400" height="543" alt="Placa de premiação LINKA de R$ 10 mil em vendas, acrílico preto" loading="lazy"><div><b>R$ 10 mil</b><span>Primeira placa</span></div></li>
+        <li class="t50"><img src="/img/premiacao/placa-50-400.webp" srcset="/img/premiacao/placa-50-400.webp 400w, /img/premiacao/placa-50-800.webp 800w" sizes="(min-width:760px) 320px, 72vw" width="400" height="543" alt="Placa de premiação LINKA de R$ 50 mil em vendas, moldura prata" loading="lazy"><div><b>R$ 50 mil</b><span>Placa prata</span></div></li>
+        <li class="t100"><img src="/img/premiacao/placa-100-400.webp" srcset="/img/premiacao/placa-100-400.webp 400w, /img/premiacao/placa-100-800.webp 800w" sizes="(min-width:760px) 320px, 72vw" width="400" height="543" alt="Placa de premiação LINKA de R$ 100 mil em vendas, moldura dourada, com o nome Você" loading="lazy"><div><b>R$ 100 mil</b><span>Placa ouro</span></div></li>
+      </ul>
+      <div class="premio-dots" aria-label="Escolher placa"><button type="button" aria-label="Placa de 10 mil" aria-current="true"></button><button type="button" aria-label="Placa de 50 mil"></button><button type="button" aria-label="Placa de 100 mil"></button></div>
+      <script>
+      (function(){
+        var g=document.querySelector('.premio-grid'); if(!g) return;
+        var items=g.querySelectorAll('li'), dots=document.querySelectorAll('.premio-dots button');
+        var mq=window.matchMedia('(max-width:760px)'), calm=window.matchMedia('(prefers-reduced-motion: reduce)');
+        var i=0, timer=null, visible=false, pausedUntil=0;
+        function go(n,smooth){i=(n+items.length)%items.length;var li=items[i];g.scrollTo({left:li.offsetLeft-(g.clientWidth-li.clientWidth)/2,behavior:smooth?'smooth':'auto'});}
+        function mark(){var c=g.scrollLeft+g.clientWidth/2,best=0,d=1e9;items.forEach(function(li,k){var m=Math.abs(li.offsetLeft+li.clientWidth/2-c);if(m<d){d=m;best=k}});i=best;dots.forEach(function(b,k){b.setAttribute('aria-current',k===best?'true':'false')});}
+        function tick(){if(!mq.matches||calm.matches||!visible||Date.now()<pausedUntil)return;go(i+1,true);}
+        function start(){if(!timer)timer=setInterval(tick,2800);}
+        g.addEventListener('scroll',function(){window.requestAnimationFrame(mark)},{passive:true});
+        ['touchstart','pointerdown','wheel'].forEach(function(e){g.addEventListener(e,function(){pausedUntil=Date.now()+7000},{passive:true})});
+        dots.forEach(function(b,k){b.addEventListener('click',function(){pausedUntil=Date.now()+7000;go(k,true)})});
+        if('IntersectionObserver' in window){new IntersectionObserver(function(es){visible=es[0].isIntersecting},{threshold:.4}).observe(g);}else{visible=true}
+        start();
+      })();
+      </script>
+      <p class="premio-note">Cada placa leva <strong>o seu nome</strong> e o valor que você alcançou.</p>
     </div>
   </section>
 
