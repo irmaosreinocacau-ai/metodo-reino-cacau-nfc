@@ -504,51 +504,7 @@ section.silk>.wrap{position:relative;z-index:1}
       <p class="hint">Toque para parar · arraste para o lado · toque na foto para ampliar</p>
     </div>
     <div class="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada"><button type="button" aria-label="Fechar">×</button><img alt=""><p></p></div>
-    <script>
-    (function(){
-      var rails=[].slice.call(document.querySelectorAll('.rail'));
-      var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      rails.forEach(function(r){
-        var orig=[].slice.call(r.children), setW=0, pos=0, hold=0, last=0, vis=false, dir=+r.dataset.dir||1, speed=26;
-        function addSet(){orig.forEach(function(n){var c=n.cloneNode(true);c.setAttribute('aria-hidden','true');c.tabIndex=-1;r.appendChild(c);});}
-        function measure(){setW=r.children[orig.length].offsetLeft-r.children[0].offsetLeft; while(r.scrollWidth<r.clientWidth+setW*2) addSet();}
-        addSet(); measure(); pos=setW*0.5; r.scrollLeft=pos;
-        function wrap(){ if(r.scrollLeft>=setW*1.5){pos=r.scrollLeft-setW;r.scrollLeft=pos;} else if(r.scrollLeft<setW*0.25){pos=r.scrollLeft+setW;r.scrollLeft=pos;} }
-        function pause(){hold=Infinity;}
-        function resume(){hold=performance.now()+2500;pos=r.scrollLeft;}
-        function tick(t){
-          var dt=last?Math.min(t-last,64):0; last=t;
-          if(vis&&!still&&t>hold&&!document.hidden){
-            if(Math.abs(r.scrollLeft-pos)>2) pos=r.scrollLeft;
-            pos+=dir*speed*dt/1000;
-            if(pos>=setW*1.5) pos-=setW; if(pos<=setW*0.25) pos+=setW;
-            r.scrollLeft=pos;
-          }
-          requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-        new IntersectionObserver(function(e){vis=e[0].isIntersecting;}).observe(r);
-        r.addEventListener('touchstart',pause,{passive:true});
-        r.addEventListener('touchend',resume,{passive:true});
-        r.addEventListener('mouseenter',pause); r.addEventListener('mouseleave',resume);
-        r.addEventListener('scroll',function(){if(hold!==Infinity||still) wrap();},{passive:true});
-        var down=null, moved=false;
-        r.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;down={x:e.clientX,s:r.scrollLeft};moved=false;r.classList.add('dragging');});
-        window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-down.x;if(Math.abs(dx)>4)moved=true;r.scrollLeft=down.s-dx;});
-        window.addEventListener('pointerup',function(){if(!down)return;down=null;r.classList.remove('dragging');wrap();pos=r.scrollLeft;});
-        r.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
-        window.addEventListener('resize',function(){measure();});
-      });
-      var lb=document.querySelector('.lb'), li=lb.querySelector('img'), lp=lb.querySelector('p');
-      document.addEventListener('click',function(e){
-        var b=e.target.closest&&e.target.closest('.shot'); if(!b) return;
-        var im=b.querySelector('img'); li.src=im.src; li.alt=im.alt; lp.textContent=b.dataset.cap; lb.classList.add('open'); rails.forEach(function(r){r.dispatchEvent(new Event('touchstart'));});
-      });
-      function close(){lb.classList.remove('open');rails.forEach(function(r){r.dispatchEvent(new Event('touchend'));});}
-      lb.addEventListener('click',function(e){if(e.target!==li)close();});
-      document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
-    })();
-    </script>
+    <script src="/js/mural.js"></script>
   </section>
 
   <section class="dark shift">
@@ -577,23 +533,7 @@ section.silk>.wrap{position:relative;z-index:1}
         <li class="t100"><img src="/img/premiacao/placa-100-400.webp" srcset="/img/premiacao/placa-100-400.webp 400w, /img/premiacao/placa-100-800.webp 800w" sizes="(min-width:760px) 320px, 72vw" width="400" height="543" alt="Placa de premiação LINKA de R$ 100 mil em vendas, moldura dourada, com o nome Você" loading="lazy"><div><b>R$ 100 mil</b><span>Placa ouro</span></div></li>
       </ul>
       <div class="premio-dots" aria-label="Escolher placa"><button type="button" aria-label="Placa de 10 mil" aria-current="true"></button><button type="button" aria-label="Placa de 50 mil"></button><button type="button" aria-label="Placa de 100 mil"></button></div>
-      <script>
-      (function(){
-        var g=document.querySelector('.premio-grid'); if(!g) return;
-        var items=g.querySelectorAll('li'), dots=document.querySelectorAll('.premio-dots button');
-        var mq=window.matchMedia('(max-width:760px)'), calm=window.matchMedia('(prefers-reduced-motion: reduce)');
-        var i=0, timer=null, visible=false, pausedUntil=0;
-        function go(n,smooth){i=(n+items.length)%items.length;var li=items[i];g.scrollTo({left:li.offsetLeft-(g.clientWidth-li.clientWidth)/2,behavior:smooth?'smooth':'auto'});}
-        function mark(){var c=g.scrollLeft+g.clientWidth/2,best=0,d=1e9;items.forEach(function(li,k){var m=Math.abs(li.offsetLeft+li.clientWidth/2-c);if(m<d){d=m;best=k}});i=best;dots.forEach(function(b,k){b.setAttribute('aria-current',k===best?'true':'false')});}
-        function tick(){if(!mq.matches||calm.matches||!visible||Date.now()<pausedUntil)return;go(i+1,true);}
-        function start(){if(!timer)timer=setInterval(tick,2800);}
-        g.addEventListener('scroll',function(){window.requestAnimationFrame(mark)},{passive:true});
-        ['touchstart','pointerdown','wheel'].forEach(function(e){g.addEventListener(e,function(){pausedUntil=Date.now()+7000},{passive:true})});
-        dots.forEach(function(b,k){b.addEventListener('click',function(){pausedUntil=Date.now()+7000;go(k,true)})});
-        if('IntersectionObserver' in window){new IntersectionObserver(function(es){visible=es[0].isIntersecting},{threshold:.4}).observe(g);}else{visible=true}
-        start();
-      })();
-      </script>
+      <script src="/js/premiacao.js"></script>
       <p class="premio-note">Cada placa leva <strong>o seu nome</strong> e o valor que você alcançou.</p>
     </div>
   </section>
