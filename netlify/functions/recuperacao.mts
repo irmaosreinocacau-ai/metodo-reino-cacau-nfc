@@ -1,7 +1,7 @@
 // Dados do painel de recuperação (protegido por senha)
 import type { Config } from "@netlify/functions"
 import { getStore } from "@netlify/blobs"
-import { brDate } from "../lib/recuperacao.mts"
+import { brDate, sha256, PAINEL_SENHA_SHA256 } from "../lib/recuperacao.mts"
 
 function json(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -17,9 +17,9 @@ async function inChunks<T, R>(items: T[], size: number, fn: (x: T) => Promise<R>
 }
 
 export default async (req: Request) => {
-  const senha = Netlify.env.get("PAINEL_SENHA")
   const url = new URL(req.url)
-  if (!senha || (req.headers.get("x-senha") ?? url.searchParams.get("senha")) !== senha) return json({ erro: "senha" }, 401)
+  const dada = req.headers.get("x-senha") ?? url.searchParams.get("senha") ?? ""
+  if (!dada || (await sha256(dada.trim())) !== PAINEL_SENHA_SHA256) return json({ erro: "senha" }, 401)
 
   const store = getStore({ name: "recuperacao", consistency: "strong" })
 

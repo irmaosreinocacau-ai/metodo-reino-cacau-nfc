@@ -99,3 +99,12 @@ export function personId(p: { phone: string; email: string }): string {
   if (p.email) return "e" + p.email.replace(/[^a-z0-9@._-]/g, "")
   return ""
 }
+
+// Impressões digitais (SHA-256) das senhas. Não dá para recuperar a senha a partir delas.
+export const PAINEL_SENHA_SHA256 = "e60d8ffa7c46d3d8a2bb44565988366bb38f05b0cb60632c4280bb78f7fc2552"
+export const HUBLA_TOKEN_SHA256 = "ac377055fd898280efd29a556a40a355163e6210276522334fb9da0d0e39f825"
+
+export async function sha256(text: string): Promise<string> {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text))
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("")
+}

@@ -1,16 +1,14 @@
 // Recebe os avisos da Hubla (carrinho abandonado, Pix gerado, pagamento etc.)
 import type { Config } from "@netlify/functions"
 import { getStore } from "@netlify/blobs"
-import { brDate, classify, personFrom, personId, productFrom, utmFrom, payMethodFrom } from "../lib/recuperacao.mts"
+import { brDate, classify, personFrom, personId, productFrom, utmFrom, payMethodFrom, sha256, HUBLA_TOKEN_SHA256 } from "../lib/recuperacao.mts"
 
 export default async (req: Request) => {
   if (req.method !== "POST") return new Response("ok")
-  const expected = Netlify.env.get("HUBLA_TOKEN")
-  const got = req.headers.get("x-hubla-token")
-  if (!expected || got !== expected) {
+  const got = req.headers.get("x-hubla-token") ?? ""
+  if (!got || (await sha256(got)) !== HUBLA_TOKEN_SHA256) {
     const names = [...req.headers.keys()].join(",")
-    const hits = [...req.headers.entries()].filter(([, v]) => expected && v.includes(expected)).map(([k]) => k)
-    const diag = { at: Date.now(), env: expected ? "len" + expected.length : "VAZIO", header: got ? "len" + got.length : "ausente", headers: names, tokenEm: hits }
+    const diag = { at: Date.now(), header: got ? "len" + got.length : "ausente", headers: names }
     console.log("401 webhook", JSON.stringify(diag))
     try { await getStore({ name: "recuperacao", consistency: "strong" }).setJSON(`diag/${Date.now()}`, diag) } catch {}
     return new Response("unauthorized", { status: 401 })
