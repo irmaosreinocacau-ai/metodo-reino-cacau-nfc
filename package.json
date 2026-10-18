@@ -1,0 +1,8 @@
+{
+  "name": "metodo-reino-cacau-nfc",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
