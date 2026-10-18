@@ -34,7 +34,7 @@
       });
       var lb=document.querySelector('.lb'), li=lb.querySelector('img'), lp=lb.querySelector('p');
       document.addEventListener('click',function(e){
-        var b=e.target.closest&&e.target.closest('.shot'); if(!b) return;
+        var b=e.target.closest&&e.target.closest('.mcard'); if(!b) return;
         var im=b.querySelector('img'); li.src=im.src; li.alt=im.alt; lp.textContent=b.dataset.cap; lb.classList.add('open'); rails.forEach(function(r){r.dispatchEvent(new Event('touchstart'));});
       });
       function close(){lb.classList.remove('open');rails.forEach(function(r){r.dispatchEvent(new Event('touchend'));});}
