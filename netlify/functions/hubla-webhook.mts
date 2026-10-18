@@ -10,7 +10,9 @@ export default async (req: Request) => {
   if (!expected || got !== expected) {
     const names = [...req.headers.keys()].join(",")
     const hits = [...req.headers.entries()].filter(([, v]) => expected && v.includes(expected)).map(([k]) => k)
-    console.log(`401 webhook: env=${expected ? "len" + expected.length : "VAZIO"} header=${got ? "len" + got.length : "ausente"} headers=[${names}] tokenEm=[${hits.join(",")}]`)
+    const diag = { at: Date.now(), env: expected ? "len" + expected.length : "VAZIO", header: got ? "len" + got.length : "ausente", headers: names, tokenEm: hits }
+    console.log("401 webhook", JSON.stringify(diag))
+    try { await getStore({ name: "recuperacao", consistency: "strong" }).setJSON(`diag/${Date.now()}`, diag) } catch {}
     return new Response("unauthorized", { status: 401 })
   }
 

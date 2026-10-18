@@ -18,10 +18,10 @@ async function inChunks<T, R>(items: T[], size: number, fn: (x: T) => Promise<R>
 
 export default async (req: Request) => {
   const senha = Netlify.env.get("PAINEL_SENHA")
-  if (!senha || req.headers.get("x-senha") !== senha) return json({ erro: "senha" }, 401)
+  const url = new URL(req.url)
+  if (!senha || (req.headers.get("x-senha") ?? url.searchParams.get("senha")) !== senha) return json({ erro: "senha" }, 401)
 
   const store = getStore({ name: "recuperacao", consistency: "strong" })
-  const url = new URL(req.url)
 
   if (req.method === "POST") {
     const b: any = await req.json().catch(() => ({}))
@@ -38,7 +38,9 @@ export default async (req: Request) => {
     const { blobs } = await store.list({ prefix: "raw/" })
     const last = blobs.map((b) => b.key).sort().slice(-15)
     const items = await inChunks(last, 15, (k) => store.get(k, { type: "json" }))
-    return json({ eventos: items })
+    const d = (await store.list({ prefix: "diag/" })).blobs.map((b) => b.key).sort().slice(-5)
+    const diags = await inChunks(d, 5, (k) => store.get(k, { type: "json" }))
+    return json({ eventos: items, recusados: diags })
   }
 
   const dias = Math.min(Math.max(Number(url.searchParams.get("dias")) || 3, 1), 14)
