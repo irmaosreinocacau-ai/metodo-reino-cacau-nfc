@@ -7,7 +7,12 @@ export default async (req: Request) => {
   if (req.method !== "POST") return new Response("ok")
   const expected = Netlify.env.get("HUBLA_TOKEN")
   const got = req.headers.get("x-hubla-token")
-  if (!expected || got !== expected) return new Response("unauthorized", { status: 401 })
+  if (!expected || got !== expected) {
+    const names = [...req.headers.keys()].join(",")
+    const hits = [...req.headers.entries()].filter(([, v]) => expected && v.includes(expected)).map(([k]) => k)
+    console.log(`401 webhook: env=${expected ? "len" + expected.length : "VAZIO"} header=${got ? "len" + got.length : "ausente"} headers=[${names}] tokenEm=[${hits.join(",")}]`)
+    return new Response("unauthorized", { status: 401 })
+  }
 
   let body: any
   try { body = await req.json() } catch { return new Response("bad json", { status: 400 }) }
