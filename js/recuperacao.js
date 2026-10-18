@@ -95,6 +95,21 @@
   });
   $('padrao').addEventListener('click',function(){['carrinho','pendente','falhou'].forEach(function(k){ls('msg_'+k,null)});preencherMsgs();render();toast('Mensagens padrão de volta')});
 
+  var TIPOS={carrinho:'carrinho abandonado',pendente:'Pix/fatura pendente',falhou:'pagamento recusado/expirou',pago:'pagamento aprovado',outro:'outro (ignorado)'};
+  $('avisos').addEventListener('toggle',function(){
+    if(!this.open)return;
+    $('avisosLista').textContent='carregando…';
+    api('GET',null,'?debug=1').then(function(r){
+      var ev=(r.eventos||[]).slice().reverse();
+      if(!ev.length){$('avisosLista').textContent='Nenhum aviso recebido ainda.';return}
+      $('avisosLista').innerHTML=ev.map(function(e){
+        var b=e.body&&e.body.event||{};var l=b.lead||b.user||b.payer||(b.invoice&&b.invoice.payer)||{};
+        var nome=l.fullName||[l.firstName,l.lastName].filter(Boolean).join(' ')||'';
+        return '<div style="padding:6px 0;border-bottom:1px solid var(--line)"><b>'+esc(hora(e.at))+'</b> · '+esc(e.type||'?')+' → '+esc(TIPOS[e.kind]||e.kind)+(nome?' · '+esc(nome):'')+'</div>';
+      }).join('');
+    }).catch(function(){$('avisosLista').textContent='Não consegui carregar.'});
+  });
+
   function entrar(s){
     senha=s;return api('GET',null,'?dias='+$('dias').value).then(function(r){
       ls('rec_senha',s);$('login').hidden=true;$('painel').hidden=false;preencherMsgs();
