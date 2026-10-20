@@ -28,7 +28,7 @@
           var y=cy+Math.sin(u*5.2+t*.9+phase+k*1.3)*amp*(.55+.45*Math.sin(t*.4+k*2))+Math.sin(u*2.1-t*.6+k*.8)*amp*.6+(k-.5)*amp*1.1;
           px<=-20?x.moveTo(px,y):x.lineTo(px,y);}
         var mid=1-Math.abs(k-.5)*2,g=(i%4==1);
-        x.strokeStyle=g?"rgba(204,0,0,"+(alpha*1.9*mid+.05).toFixed(3)+")":"rgba(10,10,10,"+(alpha*mid+.015).toFixed(3)+")";
+        x.strokeStyle=g?"rgba(204,0,0,"+(alpha*1.9*mid+.05).toFixed(3)+")":"rgba(255,255,255,"+(alpha*mid+.015).toFixed(3)+")";
         x.lineWidth=g?1.2:1;x.stroke();}}
     function draw(){x.clearRect(0,0,W,H);var m=W<700;
       if(hero){band(H*(m?.30:.34),m?60:90,T,.10,0);band(H*(m?.78:.80),m?50:70,T*1.1,.08,2.4);}
