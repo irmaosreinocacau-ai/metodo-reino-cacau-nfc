@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F6F7FB">
+<meta name="robots" content="noindex">
+<title>Wi-Fi grátis</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F7FB;--card:#fff;--ink:#14112E;--muted:#6B6888;--line:#E7E5F2;--brand:#4B2BC2;--brand2:#7A4CF0;--ok:#12805C;--okbg:#E7F6EF}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.top{background:linear-gradient(160deg,#2A1677 0%,#4B2BC2 55%,#2F6FE0 100%);color:#fff;padding:44px 22px 86px;text-align:center;position:relative;overflow:hidden}
+.top::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-40px;height:90px;background:var(--bg);border-radius:50% 50% 0 0}
+.ico{width:76px;height:76px;margin:0 auto 14px;border-radius:24px;background:rgba(255,255,255,.14);display:grid;place-items:center;border:1px solid rgba(255,255,255,.25)}
+.top small{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.85;font-weight:700}
+.top h1{margin:6px 0 0;font-size:28px;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+main{max-width:440px;margin:-56px auto 0;padding:0 16px 28px;position:relative;z-index:1}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 14px 34px rgba(40,20,120,.10);margin-bottom:12px}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.val{font-size:22px;font-weight:800;margin-top:6px;word-break:break-all;letter-spacing:-.01em}
+.senha{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:24px;font-weight:700;letter-spacing:.02em}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:14px;border:0;border-radius:16px;padding:17px 18px;font:inherit;font-size:17px;font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(90deg,var(--brand),var(--brand2));box-shadow:0 10px 24px rgba(91,51,214,.35);-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.98)}
+.btn.ok{background:var(--ok);box-shadow:0 10px 24px rgba(18,128,92,.3)}
+.btn.sec{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none;font-size:15px;padding:13px}
+ol{margin:0;padding:0;list-style:none;counter-reset:p}
+ol li{counter-increment:p;display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:15px;line-height:1.4}
+ol li::before{content:counter(p);flex:none;width:26px;height:26px;border-radius:99px;background:#EFEBFF;color:var(--brand);font-weight:800;font-size:13px;display:grid;place-items:center}
+.free{margin:0;font-size:17px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+.msg{text-align:center;padding:30px 18px}
+.msg h2{margin:0 0 6px;font-size:20px}.msg p{margin:0;color:var(--muted);line-height:1.5}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:8px 0 22px}
+footer a{color:inherit;text-decoration:none;font-weight:700}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;font-weight:700;font-size:14px;transition:.25s;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.sk{height:22px;border-radius:8px;background:linear-gradient(90deg,#eee,#f6f6f6,#eee);background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+</style>
+<script>window.__LINKA_ENV__ = { VITE_SUPABASE_URL: "https://imqzqbyurzflgasypjvo.supabase.co", VITE_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImltcXpxYnl1cnpmbGdhc3lwanZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEzMjA0NTgsImV4cCI6MjEwNjg5NjQ1OH0._FCCE6z7cVeViackXLM_0lvKvr1IE6RQKeQ9_GngxD8" };</script>
+</head>
+<body>
+<header class="top">
+  <div class="ico"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a15 15 0 0 1 20 0"/><path d="M5 12.6a10 10 0 0 1 14 0"/><path d="M8.5 16.3a5 5 0 0 1 7 0"/><circle cx="12" cy="20" r="1.2" fill="#fff"/></svg></div>
+  <small id="nome">Wi-Fi grátis</small>
+  <h1 id="titulo">Acesse nosso Wi-Fi</h1>
+</header>
+<main id="app">
+  <div class="card"><div class="sk" style="width:40%"></div><div class="sk" style="margin-top:12px;width:75%;height:28px"></div></div>
+</main>
+<footer>Placa inteligente <a href="https://linkanfc.com.br" rel="noopener">LINKA</a></footer>
+<div class="toast" id="toast"></div>
+<script>
+(function () {
+  var env = window.__LINKA_ENV__;
+  var app = document.getElementById('app');
+  var code = decodeURIComponent((location.pathname.split('/').filter(Boolean)[1] || '')).toUpperCase();
+  var esc = function (t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; }); };
+  var toast = function (t) { var el = document.getElementById('toast'); el.textContent = t; el.classList.add('on'); setTimeout(function () { el.classList.remove('on'); }, 1800); };
+  var aviso = function (t, p) { document.getElementById('titulo').textContent = t; app.innerHTML = '<div class="card msg"><h2>' + esc(t) + '</h2><p>' + esc(p) + '</p></div>'; };
+
+  function decode(v) {
+    if (!v || !/^WIFI:/i.test(v)) return null;
+    var c = {}, re = /([A-Z]):((?:\\.|[^;])*);/g, m, s = v.slice(5);
+    while ((m = re.exec(s))) c[m[1]] = m[2].replace(/\\([\\;,:"])/g, '$1');
+    return { rede: c.S || '', senha: c.P || '', aberta: String(c.T || '').toLowerCase() === 'nopass' };
+  }
+  function copiar(texto, btn, rotulo) {
+    var ok = function () { btn.classList.add('ok'); btn.innerHTML = '✓ Senha copiada!'; toast('Senha copiada'); setTimeout(function () { btn.classList.remove('ok'); btn.innerHTML = rotulo; }, 2500); };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(ok, velho); else velho();
+    function velho() { var t = document.createElement('textarea'); t.value = texto; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); t.setSelectionRange(0, 99999); try { document.execCommand('copy'); ok(); } catch (e) { toast('Toque e segure a senha para copiar'); } document.body.removeChild(t); }
+  }
+  var iconeCopiar = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+
+  function wifi(nome, destino) {
+    if (nome) document.getElementById('nome').textContent = nome;
+    document.title = 'Wi-Fi grátis' + (nome ? ' · ' + nome : '');
+    var w = decode(destino);
+    if (!w) { // placa antiga: texto livre
+      app.innerHTML = '<div class="card"><div class="lbl">Dados do Wi-Fi</div><p class="free" style="margin-top:8px">' + esc(destino) + '</p>' +
+        '<button class="btn" id="cp">' + iconeCopiar + 'Copiar</button></div>';
+      var b0 = document.getElementById('cp'), r0 = b0.innerHTML; b0.onclick = function () { copiar(destino, b0, r0); };
+      return;
+    }
+    var html = '<div class="card"><div class="lbl">Rede</div><div class="val">' + esc(w.rede) + '</div></div>';
+    if (w.aberta) {
+      html += '<div class="card"><div class="lbl">Senha</div><div class="val" style="font-size:18px">Não precisa de senha</div></div>' +
+        '<div class="card"><ol><li><span>Abra o <b>Wi-Fi</b> nos ajustes do celular</span></li><li><span>Toque na rede <b>' + esc(w.rede) + '</b></span></li><li><span>Pronto, você já está conectado</span></li></ol></div>';
+    } else {
+      html += '<div class="card"><div class="lbl">Senha</div><div class="val senha">' + esc(w.senha) + '</div>' +
+        '<button class="btn" id="cp">' + iconeCopiar + 'Copiar senha</button></div>' +
+        '<div class="card"><ol><li><span>Toque em <b>Copiar senha</b></span></li><li><span>Abra o <b>Wi-Fi</b> nos ajustes do celular</span></li><li><span>Escolha a rede <b>' + esc(w.rede) + '</b></span></li><li><span>Cole a senha e toque em <b>Conectar</b></span></li></ol></div>';
+    }
+    app.innerHTML = html;
+    var b = document.getElementById('cp');
+    if (b) { var r = b.innerHTML; b.onclick = function () { copiar(w.senha, b, r); }; }
+  }
+
+  if (!/^LK-\d+$/.test(code)) return aviso('Código inválido', 'Confira o código impresso abaixo do QR.');
+  fetch(env.VITE_SUPABASE_URL + '/rest/v1/rpc/placa_publica', {
+    method: 'POST',
+    headers: { apikey: env.VITE_SUPABASE_ANON_KEY, Authorization: 'Bearer ' + env.VITE_SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ p_code: code }),
+  }).then(function (r) { return r.json(); }).then(function (d) {
+    d = d || {};
+    if (d.situacao === 'wifi') return wifi(d.nome, d.destino);
+    document.querySelector('.ico').style.display = 'none';
+    document.getElementById('nome').textContent = d.nome || 'LINKA';
+    if (d.situacao === 'pausada') return aviso('Placa pausada', 'O estabelecimento pausou esta placa por enquanto.');
+    if (d.situacao === 'nao_encontrada') return aviso('Placa não encontrada', 'Este código não existe na LINKA.');
+    location.replace('/p/' + code); // outra placa: segue o caminho normal
+  }).catch(function () { aviso('Tente de novo em instantes', 'Não conseguimos abrir esta placa agora.'); });
+})();
+</script>
+</body>
+</html>

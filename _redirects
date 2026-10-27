@@ -1,4 +1,5 @@
 /p/*  https://imqzqbyurzflgasypjvo.supabase.co/functions/v1/r/:splat  302
+/placa/*  /placa.html  200
 /termos  /index.html  200
 /privacidade  /index.html  200
 /:slug  /bio.html  200
